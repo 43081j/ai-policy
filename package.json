@@ -1,0 +1,24 @@
+{
+  "name": "@43081j/ai-policies",
+  "version": "0.1.0",
+  "description": "AI Policies.",
+  "homepage": "https://github.com/43081j/ai-policy#readme",
+  "bugs": {
+    "url": "https://github.com/43081j/ai-policy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/43081j/ai-policy.git"
+  },
+  "license": "MIT",
+  "author": "AI Policies Maintainers",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "oxfmt --write policies README.md"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.68.0"
+  }
+}
