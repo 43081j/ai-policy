@@ -1,21 +1,42 @@
 # AI Contribution Policy
 
-Contributions created or assisted by AI tools are strictly prohibited in this project.
+This project is built by people, and new contributors are always welcome. To keep it that way, every part of a contribution should come from you: issues, pull requests, descriptions, comments, and replies to review.
 
-Disclosure, explanation, or negotiation regarding AI involvement will not be requested, required, or considered.
+For the same reason, contributions from automated accounts, bots, or agents are not accepted.
 
-By opening an issue or pull request, the contributor affirms that all work submitted is entirely their own. Any involvement of AI must not be detectable and must not be disclosed. Admitting to AI involvement does not exempt a contribution from this policy or make it acceptable.
+If a maintainer believes a contribution was AI generated, they may close it without a detailed explanation.
 
-If a contribution is suspected of violating this policy, it will be closed immediately.
+Maintainers may sometimes get it wrong, and apologies in advance if this affects contributions made with good intentions. These are challenging times, and this project is making deliberate choices about how it evolves.
 
-## Summary
+## What is not accepted
 
-- AI-assisted contributions are not allowed
-- Disclosing, explaining, or discussing AI usage is not wanted
-- Opening an issue or PR is an implicit statement that the work is the contributor's own
-- Contributions must show no visible signs of AI generation
-- Contributors must be able to explain and defend their contribution as their own
-- Normal contribution guidelines still apply
-- Abuse (spam, scams, malicious content) is not allowed
+- Issues, pull requests, descriptions, commit messages, comments, and review replies that were not written by you, in your own words.
+- Submissions from automated accounts, bots, agents, or any workflow where a human does not personally write and post each action.
+- Code you cannot explain and defend line by line.
+- Reports or fixes for problems you have not reproduced yourself.
 
-Read more about this and other AI contribution policies on {TODO our website}
+Non-native English is welcome. Plain, imperfect text written by you is always preferred over polished text you did not write.
+
+## Your workflow is your business
+
+What happens on your machine is not policed, will not be asked about, and does not need to be shared. What matters is what you submit. It must be yours, and you own it completely.
+
+Do not add notes about AI tools to your submissions. Disclosure does not make an unacceptable contribution acceptable, and a submission that discloses AI usage may be closed automatically.
+
+## Ownership
+
+By opening an issue, pull request, or any other submission, you affirm that:
+
+- You wrote it yourself.
+- You tested it and understand every part of it.
+- You will respond to review yourself, in your own words.
+
+## Enforcement
+
+- Suspicion is enough. Maintainers do not need proof, and are not required to explain a closure.
+- A closure is not an accusation and will not be debated in the thread.
+- Automated accounts, spam, scams, and malicious content are blocked immediately. Repeated or deliberate violations result in a ban.
+
+The issue templates, contribution guidelines, and code of conduct always apply.
+
+Read more about this and other AI contribution policies on {TODO our website}# AI 
