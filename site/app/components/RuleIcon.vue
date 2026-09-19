@@ -1,11 +1,14 @@
 <script setup lang="ts">
-const { small = false } = defineProps<{ kind: RuleKind; small?: boolean }>()
+const { small = false } = defineProps<{
+  kind: RuleKind;
+  small?: boolean;
+}>();
 
 const colors: Record<RuleKind, string> = {
   permits: 'text-ui-permits bg-ui-permits-bg',
   requires: 'text-ui-requires bg-ui-requires-bg',
   forbids: 'text-ui-forbids bg-ui-forbids-bg',
-}
+};
 </script>
 
 <template>

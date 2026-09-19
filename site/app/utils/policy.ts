@@ -3,28 +3,30 @@
 export function policyName(path: string) {
   return policySlug(path)
     .split('-')
-    .map((word) => (word === 'ai' ? 'AI' : word[0]!.toUpperCase() + word.slice(1)))
-    .join(' ')
+    .map((word) =>
+      word === 'ai' ? 'AI' : word[0]!.toUpperCase() + word.slice(1),
+    )
+    .join(' ');
 }
 
 export function policySlug(path: string) {
-  return path.split('/').pop() ?? path
+  return path.split('/').pop() ?? path;
 }
 
-export type RuleKind = 'permits' | 'requires' | 'forbids'
+export type RuleKind = 'permits' | 'requires' | 'forbids';
 
 export interface Rule {
-  id: string
-  kind: RuleKind
-  label: string
-  description: string
+  id: string;
+  kind: RuleKind;
+  label: string;
+  description: string;
 }
 
 export const ruleKinds: { kind: RuleKind; label: string }[] = [
   { kind: 'permits', label: 'Permits' },
   { kind: 'requires', label: 'Requires' },
   { kind: 'forbids', label: 'Forbids' },
-]
+];
 
 export const rules: Rule[] = [
   {
@@ -67,7 +69,8 @@ export const rules: Rule[] = [
     id: 'ownership',
     kind: 'requires',
     label: 'Full ownership',
-    description: 'Contributors test, understand, and defend every change themselves.',
+    description:
+      'Contributors test, understand, and defend every change themselves.',
   },
   {
     id: 'abuse',
@@ -91,15 +94,16 @@ export const rules: Rule[] = [
     id: 'unverified',
     kind: 'forbids',
     label: 'Unreproduced reports',
-    description: 'Reports and fixes for problems the contributor has not reproduced.',
+    description:
+      'Reports and fixes for problems the contributor has not reproduced.',
   },
-]
+];
 
 // Frontmatter only feeds the website, so keep it out of the copied policy.
 export function policyMarkdown(rawbody: string) {
-  return rawbody.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '')
+  return rawbody.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '');
 }
 
 export function policyRules(ids: string[], kind: RuleKind) {
-  return rules.filter((rule) => rule.kind === kind && ids.includes(rule.id))
+  return rules.filter((rule) => rule.kind === kind && ids.includes(rule.id));
 }

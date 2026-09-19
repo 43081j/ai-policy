@@ -28,9 +28,10 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content: 'Ready-to-use AI contribution policies for open source projects.',
+          content:
+            'Ready-to-use AI contribution policies for open source projects.',
         },
       ],
     },
   },
-})
+});

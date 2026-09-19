@@ -1,5 +1,5 @@
-import { resolve } from 'node:path'
-import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { resolve } from 'node:path';
+import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
 export default defineContentConfig({
   collections: {
@@ -20,4 +20,4 @@ export default defineContentConfig({
       }),
     }),
   },
-})
+});
