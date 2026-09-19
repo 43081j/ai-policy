@@ -1,13 +1,17 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('policies', () =>
-  queryCollection('policies').select('path', 'tagline', 'rules').all(),
+const { data } = await useAsyncData(
+  'policies',
+  () => queryCollection('policies').select('path', 'tagline', 'rules').all(),
+  {
+    default: () => [],
+  },
 );
 
-const policies = computed(() =>
-  (data.value ?? [])
+const policies = computed(() => {
+  return data.value
     .map((policy) => ({ ...policy, name: policyName(policy.path) }))
-    .sort((a, b) => a.name.localeCompare(b.name)),
-);
+    .toSorted((a, b) => a.name.localeCompare(b.name));
+});
 </script>
 
 <template>
@@ -43,30 +47,17 @@ const policies = computed(() =>
           class="group relative border-b border-ui-border py-6"
         >
           <h3 class="text-xl font-semibold tracking-tight text-balance">
-            <!-- The ::after overlay makes the whole row clickable. -->
             <NuxtLink
               :to="policy.path"
               class="no-underline group-hover:underline after:(absolute inset-0 content-[''])"
-              >{{ policy.name }}</NuxtLink
             >
+              {{ policy.name }}
+            </NuxtLink>
           </h3>
           <p class="mt-1.5 mb-3.5 max-w-2xl text-ui-muted">
             {{ policy.tagline }}
           </p>
-          <ul class="flex flex-wrap gap-1.5" aria-label="Rules">
-            <template v-for="{ kind } in ruleKinds" :key="kind">
-              <li
-                v-for="rule in policyRules(policy.rules, kind)"
-                :key="rule.id"
-                class="inline-flex items-center gap-1.5 rounded-full border border-transparent bg-ui-surface-2 py-0.5 pr-2.5 pl-1 text-xs text-ui-muted"
-                :title="rule.description"
-              >
-                <RuleIcon :kind="kind" small />
-                <span class="sr-only">{{ kind }}:</span>
-                {{ rule.label }}
-              </li>
-            </template>
-          </ul>
+          <PolicyRuleTags :rules="policy.rules" />
         </li>
       </ul>
     </section>
@@ -80,9 +71,9 @@ const policies = computed(() =>
       </h2>
       <ol class="mt-6 grid gap-8 md:grid-cols-3">
         <li class="border-t border-ui-text pt-5">
-          <span class="font-mono text-xs text-ui-muted" aria-hidden="true"
-            >01</span
-          >
+          <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
+            01
+          </span>
           <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">
             Choose
           </h3>
@@ -91,9 +82,9 @@ const policies = computed(() =>
           </p>
         </li>
         <li class="border-t border-ui-text pt-5">
-          <span class="font-mono text-xs text-ui-muted" aria-hidden="true"
-            >02</span
-          >
+          <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
+            02
+          </span>
           <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Copy</h3>
           <p class="text-ui-muted">
             Copy or download the Markdown and save it as
@@ -101,9 +92,9 @@ const policies = computed(() =>
           </p>
         </li>
         <li class="border-t border-ui-text pt-5">
-          <span class="font-mono text-xs text-ui-muted" aria-hidden="true"
-            >03</span
-          >
+          <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
+            03
+          </span>
           <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Link</h3>
           <p class="text-ui-muted">
             Reference it from your <code>CONTRIBUTING.md</code> and pull request

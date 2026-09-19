@@ -103,7 +103,3 @@ export const rules: Rule[] = [
 export function policyMarkdown(rawbody: string) {
   return rawbody.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '');
 }
-
-export function policyRules(ids: string[], kind: RuleKind) {
-  return rules.filter((rule) => rule.kind === kind && ids.includes(rule.id));
-}
