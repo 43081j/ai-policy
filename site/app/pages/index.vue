@@ -38,32 +38,30 @@ const policies = computed(() => {
       <h2 id="policies-heading" class="sr-only">Policies</h2>
 
       <div
-        class="flex flex-wrap justify-between gap-x-6 gap-y-1 border-b border-ui-border pb-3 font-mono text-xs text-ui-muted"
+        class="grid gap-6 border-b border-ui-border pb-3 font-mono text-xs text-ui-muted md:grid-cols-[minmax(0,2fr)_repeat(3,minmax(0,1fr))]"
       >
         <p>
           {{ policies.length }}
           {{ policies.length === 1 ? 'policy' : 'policies' }}
         </p>
+        <p
+          v-for="{ kind, label } in ruleKinds"
+          :key="kind"
+          class="caption max-md:hidden"
+          aria-hidden="true"
+        >
+          {{ label }}
+        </p>
       </div>
 
       <ul>
-        <li
-          v-for="policy in policies"
-          :key="policy.path"
-          class="group relative border-b border-ui-border py-6"
-        >
-          <h3 class="text-xl font-semibold tracking-tight text-balance">
-            <NuxtLink
-              :to="policy.path"
-              class="no-underline group-hover:underline after:(absolute inset-0 content-[''])"
-            >
-              {{ policy.name }}
-            </NuxtLink>
-          </h3>
-          <p class="mt-1.5 mb-5 max-w-2xl text-ui-muted text-pretty">
-            {{ policy.tagline }}
-          </p>
-          <PolicyRuleList :rules="policy.rules" />
+        <li v-for="policy in policies" :key="policy.path">
+          <PolicyRow
+            :name="policy.name"
+            :path="policy.path"
+            :tagline="policy.tagline"
+            :rules="policy.rules"
+          />
         </li>
       </ul>
     </section>
