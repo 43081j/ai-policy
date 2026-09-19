@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { policyFileName } from '~/shared/constants/policies';
+
 const { data } = await useAsyncData(
   'policies',
   () => queryCollection('policies').select('path', 'tagline', 'rules').all(),
@@ -35,10 +37,14 @@ const policies = computed(() => {
     <section class="mt-14" aria-labelledby="policies-heading">
       <h2 id="policies-heading" class="sr-only">Policies</h2>
 
-      <p class="border-b border-ui-border pb-3 font-mono text-xs text-ui-muted">
-        {{ policies.length }}
-        {{ policies.length === 1 ? 'policy' : 'policies' }}
-      </p>
+      <div
+        class="flex flex-wrap justify-between gap-x-6 gap-y-1 border-b border-ui-border pb-3 font-mono text-xs text-ui-muted"
+      >
+        <p>
+          {{ policies.length }}
+          {{ policies.length === 1 ? 'policy' : 'policies' }}
+        </p>
+      </div>
 
       <ul>
         <li
@@ -54,10 +60,10 @@ const policies = computed(() => {
               {{ policy.name }}
             </NuxtLink>
           </h3>
-          <p class="mt-1.5 mb-3.5 max-w-2xl text-ui-muted">
+          <p class="mt-1.5 mb-5 max-w-2xl text-ui-muted text-pretty">
             {{ policy.tagline }}
           </p>
-          <PolicyRuleTags :rules="policy.rules" />
+          <PolicyRuleList :rules="policy.rules" />
         </li>
       </ul>
     </section>
@@ -87,8 +93,8 @@ const policies = computed(() => {
           </span>
           <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Copy</h3>
           <p class="text-ui-muted">
-            Copy or download the Markdown and save it as
-            <code>AI_POLICY.md</code> in your repository.
+            Copy or download the Markdown and save it as {{ policyFileName }} in
+            your repository.
           </p>
         </li>
         <li class="border-t border-ui-text pt-5">
@@ -97,8 +103,7 @@ const policies = computed(() => {
           </span>
           <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Link</h3>
           <p class="text-ui-muted">
-            Reference it from your <code>CONTRIBUTING.md</code> and pull request
-            template.
+            Reference it from your CONTRIBUTING.md and pull request template.
           </p>
         </li>
       </ol>

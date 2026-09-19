@@ -1,0 +1,101 @@
+<script setup lang="ts">
+import { useClipboard } from '@vueuse/core';
+import type { PoliciesCollectionItem } from '@nuxt/content';
+import { policyFileName } from '~/shared/constants/policies';
+
+const props = defineProps<{
+  policy: PoliciesCollectionItem;
+}>();
+
+const policyTabs = ['preview', 'markdown'];
+
+const markdown = policyMarkdown(props.policy.rawbody);
+
+const downloadUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
+const selectedPolicyTab = ref<(typeof policyTabs)[number]>('preview');
+
+const { copied, copy } = useClipboard({
+  source: markdown,
+});
+</script>
+
+<template>
+  <div class="min-w-0 rounded-xl border border-ui-border bg-ui-surface">
+    <div
+      class="sticky top-0 z-1 flex flex-wrap items-center justify-between gap-3 rounded-t-xl border-b border-ui-border bg-ui-surface/88 py-2.5 pr-2.5 pl-3 backdrop-blur-sm"
+    >
+      <Tabs :tabs="policyTabs" v-model:selected="selectedPolicyTab" />
+
+      <div class="flex gap-2">
+        <a :href="downloadUrl" :download="policyFileName" class="btn">
+          Download
+        </a>
+        <button class="btn btn-primary" @click="copy(markdown)">
+          {{ copied ? 'Copied!' : 'Copy' }}
+        </button>
+      </div>
+    </div>
+
+    <ContentRenderer
+      v-if="selectedPolicyTab === 'preview'"
+      :value="policy"
+      class="policy-prose"
+    />
+
+    <pre
+      v-else
+      class="overflow-x-auto whitespace-pre-wrap px-6 py-7 font-mono text-sm leading-relaxed wrap-anywhere"
+      v-text="markdown"
+    />
+
+    <span class="sr-only" aria-live="polite">
+      {{ copied ? 'Policy copied to clipboard' : '' }}
+    </span>
+  </div>
+</template>
+
+<style scoped>
+.policy-prose {
+  @apply px-6 pt-7 pb-8 sm:px-11 sm:pt-9 sm:pb-11;
+}
+
+.policy-prose > :deep(:first-child) {
+  @apply mt-0;
+}
+
+.policy-prose > :deep(:last-child) {
+  @apply mb-0;
+}
+
+.policy-prose :deep(h1) {
+  @apply mb-5 text-2xl font-semibold leading-tight tracking-tight text-balance;
+}
+
+.policy-prose :deep(h2) {
+  @apply mt-9 mb-3 text-lg font-semibold tracking-tight text-balance;
+}
+
+.policy-prose :deep(:is(h1, h2) a) {
+  @apply no-underline;
+}
+
+.policy-prose :deep(p) {
+  @apply my-4 text-pretty;
+}
+
+.policy-prose :deep(ul) {
+  @apply my-4 list-disc pl-5;
+}
+
+.policy-prose :deep(li) {
+  @apply text-pretty;
+}
+
+.policy-prose :deep(li + li) {
+  @apply mt-1.5;
+}
+
+.policy-prose :deep(li::marker) {
+  @apply text-ui-faint;
+}
+</style>
