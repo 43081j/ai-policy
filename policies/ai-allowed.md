@@ -1,3 +1,8 @@
+---
+tagline: Use any AI tooling you like. The usual contribution rules still apply.
+enforcement: Contributions are reviewed like any other.
+rules: [ai-code, ai-text, agents, private-use, guidelines, abuse]
+---
 # AI Contribution Policy
 
 This project **allows all types of contribution to be made with the assistance of AI tools**.
@@ -11,4 +16,4 @@ For example, you may use an agent to generate code, documentation, issues, and o
 - Contribution guidelines must still be followed
 - Abuse, such as spam, scams, or malicious content, is not allowed
 
-Read more about this and other AI contribution policies on {TODO our website}
+Read more about this and other AI contribution policies on [ai-policy.dev](https://ai-policy.dev/)

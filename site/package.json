@@ -1,0 +1,22 @@
+{
+  "name": "ai-policy-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.16.0",
+    "@nuxt/fonts": "^0.14.0",
+    "nuxt": "^4.5.2"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.134",
+    "@unocss/nuxt": "^66.10.5",
+    "unocss": "^66.10.5"
+  }
+}
