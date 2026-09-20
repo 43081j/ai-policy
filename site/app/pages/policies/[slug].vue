@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { policyFileName } from '~/shared/constants/policies';
+import { clientContent } from '~/utils/policy';
 
 const route = useRoute();
-const path = `/policies/${route.params.slug}`;
+const path = `/${route.params.slug}`;
 
-const { data: policy } = await useAsyncData(path, () =>
-  queryCollection('policies').path(path).first(),
-);
+const { data: policy } = await useAsyncData(path, () => {
+  return clientContent.get(path);
+});
 
 if (!policy.value) {
   throw createError({
@@ -16,23 +17,17 @@ if (!policy.value) {
   });
 }
 
-const { data: others } = await useAsyncData(
-  'policies-nav',
-  () => queryCollection('policies').select('path').all(),
-  {
-    default: () => [],
-  },
-);
+const { data: policies } = await usePolicies();
 
-const otherPolicies = computed(() => {
-  return others.value.filter((item) => item.path !== path);
-});
+const otherPolicies = computed(() =>
+  policies.value.filter((item) => item.path !== path),
+);
 
 const name = policyName(path);
 
 useSeoMeta({
   title: `${name} · AI Contribution Policies`,
-  description: policy.value.tagline,
+  description: policy.value.data.tagline,
 });
 </script>
 
@@ -52,11 +47,11 @@ useSeoMeta({
         {{ name }}
       </h1>
       <p class="max-w-xl text-lg text-pretty text-ui-muted">
-        {{ policy.tagline }}
+        {{ policy.data.tagline }}
       </p>
     </header>
 
-    <PolicyRules :rules="policy.rules" />
+    <PolicyRules v-if="policy.data.rules" :rules="policy.data.rules" />
 
     <div
       class="mt-10 grid gap-10 lg:(grid-cols-[minmax(0,1fr)_260px] items-start gap-12)"
@@ -80,13 +75,13 @@ useSeoMeta({
         </div>
         <div>
           <h2 class="caption mb-2.5">Enforcement</h2>
-          <p>{{ policy.enforcement }}</p>
+          <p>{{ policy.data.enforcement }}</p>
         </div>
         <div>
           <h2 class="caption mb-2.5">Other policies</h2>
           <ul class="grid gap-1.5">
             <li v-for="other in otherPolicies" :key="other.path">
-              <NuxtLink :to="other.path">{{ policyName(other.path) }}</NuxtLink>
+              <NuxtLink :to="other.to">{{ other.name }}</NuxtLink>
             </li>
           </ul>
         </div>

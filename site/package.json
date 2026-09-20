@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "comark-content prepare -o shared/comark-content.d.ts && nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -14,9 +14,11 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@nuxt/content": "^3.16.0",
+    "@comark/vue": "^0.7.0",
     "@nuxt/fonts": "^0.14.0",
     "@vueuse/core": "^15.0.0",
+    "comark": "^0.7.0",
+    "comark-content": "^0.4.1",
     "nuxt": "^4.5.2"
   },
   "devDependencies": {

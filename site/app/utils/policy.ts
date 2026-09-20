@@ -1,4 +1,5 @@
-// Every policy shares the heading "AI Contribution Policy", so names come from
+import { createContentClient } from 'comark-content/client';
+
 // the file name instead (e.g. "ai-allowed" -> "AI Allowed").
 export function policyName(path: string) {
   return policySlug(path)
@@ -99,7 +100,27 @@ export const rules: Rule[] = [
   },
 ];
 
-// Frontmatter only feeds the website, so keep it out of the copied policy.
-export function policyMarkdown(rawbody: string) {
-  return rawbody.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '');
+export const clientContent = createContentClient({
+  fetch: $fetch,
+});
+
+export function usePolicies() {
+  return useAsyncData(
+    'policies',
+    async () => {
+      const files = await clientContent.list();
+
+      return files
+        .filter((file) => !policySlug(file.path).startsWith('_'))
+        .map((file) => ({
+          path: file.path,
+          to: `/policies/${policySlug(file.path)}`,
+          name: policyName(file.path),
+          tagline: file.data.tagline ?? '',
+          rules: (file.data.rules ?? []) as Rule['id'][],
+        }))
+        .toSorted((a, b) => a.name.localeCompare(b.name));
+    },
+    { default: () => [] },
+  );
 }

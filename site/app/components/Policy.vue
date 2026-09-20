@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core';
-import type { PoliciesCollectionItem } from '@nuxt/content';
+import type { ContentFile } from 'comark-content';
+import { MarkdownDocument } from '@comark/vue';
+import { renderMarkdown } from 'comark/render';
 import { policyFileName } from '~/shared/constants/policies';
 
 const props = defineProps<{
-  policy: PoliciesCollectionItem;
+  policy: ContentFile;
 }>();
 
+const { data: markdown } = await useAsyncData(
+  `policy-markdown:${props.policy.path}`,
+  () => renderMarkdown({ nodes: props.policy.nodes }),
+  {
+    default: () => '',
+    watch: [() => props.policy.path],
+  },
+);
+
+const downloadUrl = computed(() => {
+  return `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown.value)}`;
+});
+
 const policyTabs = ['preview', 'markdown'];
-
-const markdown = policyMarkdown(props.policy.rawbody);
-
-const downloadUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
 const selectedPolicyTab = ref<(typeof policyTabs)[number]>('preview');
 
 const { copied, copy } = useClipboard({
@@ -36,7 +47,7 @@ const { copied, copy } = useClipboard({
       </div>
     </div>
 
-    <ContentRenderer
+    <MarkdownDocument
       v-if="selectedPolicyTab === 'preview'"
       :value="policy"
       class="policy-prose"

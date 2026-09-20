@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-01',
-  modules: ['@nuxt/fonts', '@unocss/nuxt', '@nuxt/content'],
+  modules: ['@nuxt/fonts', '@unocss/nuxt'],
   css: ['~/assets/main.css'],
   fonts: {
     families: [

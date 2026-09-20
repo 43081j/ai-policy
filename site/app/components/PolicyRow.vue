@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   name: string;
-  path: string;
+  to: string;
   tagline: string;
   rules: Rule['id'][];
 }>();
@@ -16,7 +16,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
     <div>
       <h3 class="text-lg font-semibold tracking-tight text-balance">
         <NuxtLink
-          :to="path"
+          :to="to"
           class="no-underline group-hover:underline after:(absolute inset-0 content-[''])"
         >
           {{ name }}

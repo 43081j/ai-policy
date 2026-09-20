@@ -1,19 +1,7 @@
 <script setup lang="ts">
 import { policyFileName } from '~/shared/constants/policies';
 
-const { data } = await useAsyncData(
-  'policies',
-  () => queryCollection('policies').select('path', 'tagline', 'rules').all(),
-  {
-    default: () => [],
-  },
-);
-
-const policies = computed(() => {
-  return data.value
-    .map((policy) => ({ ...policy, name: policyName(policy.path) }))
-    .toSorted((a, b) => a.name.localeCompare(b.name));
-});
+const { data: policies } = await usePolicies();
 </script>
 
 <template>
@@ -58,7 +46,7 @@ const policies = computed(() => {
         <li v-for="policy in policies" :key="policy.path">
           <PolicyRow
             :name="policy.name"
-            :path="policy.path"
+            :to="policy.to"
             :tagline="policy.tagline"
             :rules="policy.rules"
           />
