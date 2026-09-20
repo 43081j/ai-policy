@@ -109,4 +109,8 @@ const { copied, copy } = useClipboard({
 .policy-prose :deep(li::marker) {
   @apply text-ui-faint;
 }
+
+.policy-prose :deep(a) {
+  @apply underline;
+}
 </style>
