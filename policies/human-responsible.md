@@ -1,8 +1,18 @@
 ---
 tagline: Your tools are your business, but everything you submit must be yours.
 enforcement: Maintainers may close suspected AI contributions without explanation.
-rules: [private-use, guidelines, human-authorship, ownership, abuse, disclosure, unverified]
+rules:
+  [
+    private-use,
+    guidelines,
+    human-authorship,
+    ownership,
+    abuse,
+    disclosure,
+    unverified,
+  ]
 ---
+
 # AI Contribution Policy
 
 This project is built by people, and new contributors are always welcome. To keep it that way, every part of a contribution should come from you: issues, pull requests, descriptions, comments, and replies to review.
@@ -44,4 +54,4 @@ By opening an issue, pull request, or any other submission, you affirm that:
 
 The issue templates, contribution guidelines, and code of conduct always apply.
 
-Read more about this and other AI contribution policies on [ai-policy.dev](https://ai-policy.dev/) 
+Read more about this and other AI contribution policies on [ai-policy.dev](https://ai-policy.dev/)
