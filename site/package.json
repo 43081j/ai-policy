@@ -7,11 +7,7 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
-    "format": "oxfmt --write .",
-    "format:check": "oxfmt --check ."
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@comark/vue": "^0.7.0",
@@ -24,13 +20,6 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.134",
     "@unocss/nuxt": "^66.10.5",
-    "oxfmt": "^0.68.0",
-    "oxlint": "^1.83.0",
     "unocss": "^66.10.5"
-  },
-  "allowScripts": {
-    "esbuild@0.28.2": true,
-    "esbuild@0.27.7": true,
-    "fsevents@2.3.3": true
   }
 }
