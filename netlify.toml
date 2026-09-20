@@ -5,4 +5,4 @@ publish = "site/.output/public"
 ignore = "[ \"$BRANCH\" != \"main\" ]"
 
 [build.environment]
-NODE_VERSION = "25"
+NODE_VERSION = "26"

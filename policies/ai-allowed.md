@@ -3,6 +3,7 @@ tagline: Use any AI tooling you like. The usual contribution rules still apply.
 enforcement: Contributions are reviewed like any other.
 rules: [ai-code, ai-text, agents, private-use, guidelines, abuse]
 ---
+
 # AI Contribution Policy
 
 This project **allows all types of contribution to be made with the assistance of AI tools**.
