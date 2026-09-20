@@ -1,0 +1,25 @@
+{
+  "name": "ai-policy-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "comark-content prepare -o shared/comark-content.d.ts && nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@comark/vue": "^0.7.0",
+    "@nuxt/fonts": "^0.14.0",
+    "@vueuse/core": "^15.0.0",
+    "comark": "^0.7.0",
+    "comark-content": "^0.4.1",
+    "nuxt": "^4.5.2"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.134",
+    "@unocss/nuxt": "^66.10.5",
+    "unocss": "^66.10.5"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [],
+  "ignorePatterns": [".nuxt", ".output", ".data", "dist", "package-lock.json"],
   "printWidth": 80,
   "singleQuote": true
 }
