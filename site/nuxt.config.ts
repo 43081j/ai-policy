@@ -18,9 +18,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  content: {
-    experimental: { sqliteConnector: 'native' },
-  },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
