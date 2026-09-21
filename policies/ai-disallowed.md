@@ -1,4 +1,5 @@
 ---
+name: AI Disallowed
 tagline: No AI at all. Every contribution must be the contributor’s own work.
 enforcement: Suspected AI contributions are rejected unless proven otherwise.
 rules: [guidelines, human-authorship, abuse, any-ai]

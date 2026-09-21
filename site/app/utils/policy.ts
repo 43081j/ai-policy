@@ -1,16 +1,5 @@
 import { createContentClient } from 'comark-content/client';
 
-// Every policy shares the heading "AI Contribution Policy", so names come from
-// the file name instead (e.g. "ai-allowed" -> "AI Allowed").
-export function policyName(path: string) {
-  return policySlug(path)
-    .split('-')
-    .map((word) =>
-      word === 'ai' ? 'AI' : word[0]!.toUpperCase() + word.slice(1),
-    )
-    .join(' ');
-}
-
 export function policySlug(path: string) {
   return path.split('/').pop() ?? path;
 }
@@ -116,7 +105,7 @@ export function usePolicies() {
         .map((file) => ({
           path: file.path,
           to: `/policies/${policySlug(file.path)}`,
-          name: policyName(file.path),
+          name: file.data.name,
           tagline: file.data.tagline ?? '',
           rules: (file.data.rules ?? []) as Rule['id'][],
         }))

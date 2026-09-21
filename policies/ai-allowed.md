@@ -1,4 +1,5 @@
 ---
+name: AI Allowed
 tagline: Use any AI tooling you like. The usual contribution rules still apply.
 enforcement: Contributions are reviewed like any other.
 rules: [ai-code, ai-text, agents, private-use, guidelines, abuse]

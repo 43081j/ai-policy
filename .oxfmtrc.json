@@ -1,6 +1,13 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [".nuxt", ".output", ".data", "dist", "package-lock.json"],
+  "ignorePatterns": [
+    ".nuxt",
+    ".output",
+    ".data",
+    "dist",
+    "package-lock.json",
+    "site/shared/comark-content.d.ts"
+  ],
   "printWidth": 80,
   "singleQuote": true
 }

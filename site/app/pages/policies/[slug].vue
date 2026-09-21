@@ -23,7 +23,7 @@ const otherPolicies = computed(() =>
   policies.value.filter((item) => item.path !== path),
 );
 
-const name = policyName(path);
+const name = policy.value.data.name;
 
 useSeoMeta({
   title: `${name} · AI Contribution Policies`,

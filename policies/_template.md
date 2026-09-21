@@ -1,5 +1,7 @@
 ---
 # Used by the website only; stripped when the policy is copied or downloaded.
+# The policy name, shown in listings and as the page heading.
+name: '{Name}'
 # One sentence shown under the policy name.
 tagline: '{Tagline}'
 # One sentence on how the policy is enforced.
