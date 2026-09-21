@@ -14,9 +14,9 @@ lives in [`policies/`](./policies).
 
 1. Copy [`policies/_template.md`](./policies/_template.md) to
    `policies/<name>.md`.
-2. Fill in the frontmatter: a one-sentence `tagline`, a one-sentence
-   `enforcement`, and the `rules` the policy applies. Rule IDs come from
-   [`site/app/utils/policy.ts`](./site/app/utils/policy.ts)
+2. Fill in the frontmatter: the `name` shown on the site, a one-sentence
+   `tagline`, a one-sentence `enforcement`, and the `rules` the policy applies.
+   Rule IDs come from [`site/app/utils/policy.ts`](./site/app/utils/policy.ts)
 3. Write the policy body under the `AI Contribution Policy` heading, followed
    by a short `Summary` list and the link back to the website.
 4. Run `npm run lint` and, if you want to see it rendered, `npm run dev`.

@@ -1,4 +1,5 @@
 ---
+name: Human Responsible
 tagline: Your tools are your business, but everything you submit must be yours.
 enforcement: Maintainers may close suspected AI contributions without explanation.
 rules:
