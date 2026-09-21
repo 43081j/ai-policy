@@ -7,19 +7,15 @@ const { data: policies } = await usePolicies();
 <template>
   <div>
     <section class="pt-16">
-      <p class="mb-4 font-mono text-xs tracking-wide text-ui-muted">
-        For open source maintainers
-      </p>
       <h1
         class="mb-5 text-4xl sm:text-5xl font-semibold tracking-tight text-balance"
       >
-        Say how your project handles&nbsp;AI.
+        Your project, your rules.
       </h1>
-      <p class="max-w-xl text-lg text-pretty text-ui-muted">
-        Drop-in contribution policies, from fully open to strictly human. Find
-        the one that fits, copy it into your repository, and point contributors
-        to it.
-      </p>
+      <div class="max-w-xl text-lg text-pretty text-ui-muted">
+        A community collection of ready-made contribution policies. Whether you
+        welcome AI help or want everything written by humans.
+      </div>
     </section>
 
     <section class="mt-14" aria-labelledby="policies-heading">
