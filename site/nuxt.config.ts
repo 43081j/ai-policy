@@ -29,6 +29,14 @@ export default defineNuxtConfig({
             'Ready-to-use AI contribution policies for open source projects.',
         },
       ],
+      link: [
+        {
+          key: 'favicon',
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+      ],
     },
   },
 });
