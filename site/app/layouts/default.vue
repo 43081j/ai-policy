@@ -1,11 +1,8 @@
 <template>
   <div class="mx-auto max-w-5xl px-4 sm:px-8">
     <header class="flex items-center justify-between gap-4 py-5">
-      <NuxtLink
-        to="/"
-        class="inline-flex items-center gap-2.5 font-semibold no-underline"
-      >
-        <span class="i-lucide:scale text-ui-muted" aria-hidden="true" />
+      <NuxtLink to="/" class="inline-flex items-center gap-2 font-semibold">
+        <span class="i-lucide:heart-handshake" />
         AI Contribution Policies
       </NuxtLink>
       <nav class="flex gap-5 text-sm">
