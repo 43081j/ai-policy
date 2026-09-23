@@ -61,13 +61,7 @@ export const rules: Rule[] = [
     kind: 'requires',
     label: 'Full ownership',
     description:
-      'Contributors test, understand, and defend every change themselves.',
-  },
-  {
-    id: 'abuse',
-    kind: 'forbids',
-    label: 'Spam and abuse',
-    description: 'Spam, scams, and malicious content are not allowed.',
+      'Contributors test, understand, and take responsibility for every change themselves.',
   },
   {
     id: 'any-ai',
