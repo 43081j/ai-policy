@@ -4,13 +4,17 @@ import type { QueryRowBase } from 'comark-content'
 export interface DefaultData {
   name: string;
   tagline: string;
+  created: string;
   rules: Array<string>;
+  updated?: string;
 }
 
 export interface DefaultRow extends QueryRowBase {
   'data.name': string;
   'data.tagline': string;
+  'data.created': string;
   'data.rules': Array<string>;
+  'data.updated'?: string;
 }
 
 declare module 'comark-content' {

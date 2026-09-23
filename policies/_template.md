@@ -4,6 +4,10 @@
 name: '{Name}'
 # One sentence shown under the policy name.
 tagline: '{Tagline}'
+# Date the policy was added (YYYY-MM-DD). Keep the quotes.
+created: '{Date}'
+# Optional. Date the policy text last changed (YYYY-MM-DD). Keep the quotes.
+# updated: '{Date}'
 # Rule IDs from site/app/utils/policy.ts
 rules: [guidelines, human-authorship]
 ---
