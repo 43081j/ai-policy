@@ -43,6 +43,25 @@ useSeoMeta({
       <p class="max-w-xl text-lg text-pretty text-ui-muted">
         {{ policy.data.tagline }}
       </p>
+      <p
+        v-if="policy.data.created || policy.data.updated"
+        class="mt-4 font-mono text-xs text-ui-muted"
+      >
+        <template v-if="policy.data.created">
+          Created
+          <NuxtTime :datetime="policy.data.created" date-style="medium" />
+        </template>
+        <span
+          v-if="policy.data.created && policy.data.updated"
+          aria-hidden="true"
+        >
+          ·
+        </span>
+        <template v-if="policy.data.updated">
+          Updated
+          <NuxtTime :datetime="policy.data.updated" date-style="medium" />
+        </template>
+      </p>
     </header>
 
     <PolicyRules v-if="policy.data.rules" :rules="policy.data.rules" />

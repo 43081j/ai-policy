@@ -1,6 +1,8 @@
 ---
 name: AI Disallowed
 tagline: No AI at all. Every contribution must be the contributor’s own work.
+created: '2026-09-17'
+updated: '2026-09-20'
 rules: [guidelines, human-authorship, any-ai]
 ---
 
