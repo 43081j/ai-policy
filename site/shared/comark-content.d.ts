@@ -26,6 +26,8 @@ declare module 'comark-content' {
       '/_template': DefaultData
       '/ai-allowed': DefaultData
       '/ai-disallowed': DefaultData
+      '/ai-disclosed': DefaultData
+      '/human-copyright': DefaultData
       '/human-responsible': DefaultData
     }
   }

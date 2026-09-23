@@ -64,6 +64,20 @@ export const rules: Rule[] = [
       'Contributors test, understand, and take responsibility for every change themselves.',
   },
   {
+    id: 'declaration',
+    kind: 'requires',
+    label: 'Declared AI usage',
+    description:
+      'Contributors state which AI tools they used and how much of the work they did.',
+  },
+  {
+    id: 'provenance',
+    kind: 'requires',
+    label: 'Licensing rights',
+    description:
+      'Contributors confirm they have the right to submit the work under the project’s license.',
+  },
+  {
     id: 'any-ai',
     kind: 'forbids',
     label: 'Any AI assistance',
@@ -81,6 +95,25 @@ export const rules: Rule[] = [
     label: 'Unreproduced reports',
     description:
       'Reports and fixes for problems the contributor has not reproduced.',
+  },
+  {
+    id: 'autonomous-agents',
+    kind: 'forbids',
+    label: 'Autonomous agents',
+    description:
+      'Agents, bots, and automated accounts may not open issues, pull requests, or comments.',
+  },
+  {
+    id: 'ai-media',
+    kind: 'forbids',
+    label: 'AI-generated media',
+    description: 'Images, audio, video, and other AI-generated media.',
+  },
+  {
+    id: 'ai-coauthor',
+    kind: 'forbids',
+    label: 'AI co-author credits',
+    description: 'Commits and pull requests listing AI tools as co-authors.',
   },
 ];
 
