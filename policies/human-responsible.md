@@ -1,17 +1,8 @@
 ---
 name: Human Responsible
 tagline: Your tools are your business, but everything you submit must be yours.
-enforcement: Maintainers may close suspected AI contributions without explanation.
 rules:
-  [
-    private-use,
-    guidelines,
-    human-authorship,
-    ownership,
-    abuse,
-    disclosure,
-    unverified,
-  ]
+  [private-use, guidelines, human-authorship, ownership, disclosure, unverified]
 ---
 
 # AI Contribution Policy
@@ -28,10 +19,10 @@ Maintainers may sometimes get it wrong, and apologies in advance if this affects
 
 - Issues, pull requests, descriptions, commit messages, comments, and review replies that were not written by you, in your own words.
 - Submissions from automated accounts, bots, agents, or any workflow where a human does not personally write and post each action.
-- Code you cannot explain and defend line by line.
+- Code you cannot explain line by line and take responsibility for.
 - Reports or fixes for problems you have not reproduced yourself.
 
-Non-native English is welcome. Plain, imperfect text written by you is always preferred over polished text you did not write.
+Non-native English is welcome. Imperfect text written by you is always preferred over polished text you did not write.
 
 ## Your workflow is your business
 

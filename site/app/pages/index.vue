@@ -14,7 +14,8 @@ const { data: policies } = await usePolicies();
       </h1>
       <div class="max-w-xl text-lg text-pretty text-ui-muted">
         A community collection of ready-made contribution policies. Whether you
-        welcome AI help or want everything written by humans.
+        welcome AI contributions, want everything written by humans, or
+        something in between.
       </div>
     </section>
 

@@ -17,12 +17,6 @@ if (!policy.value) {
   });
 }
 
-const { data: policies } = await usePolicies();
-
-const otherPolicies = computed(() =>
-  policies.value.filter((item) => item.path !== path),
-);
-
 const name = policy.value.data.name;
 
 useSeoMeta({
@@ -72,18 +66,6 @@ useSeoMeta({
               Link to it from CONTRIBUTING.md and your pull request template.
             </li>
           </ol>
-        </div>
-        <div>
-          <h2 class="caption mb-2.5">Enforcement</h2>
-          <p>{{ policy.data.enforcement }}</p>
-        </div>
-        <div>
-          <h2 class="caption mb-2.5">Other policies</h2>
-          <ul class="grid gap-1.5">
-            <li v-for="other in otherPolicies" :key="other.path">
-              <NuxtLink :to="other.to">{{ other.name }}</NuxtLink>
-            </li>
-          </ul>
         </div>
         <NuxtLink
           :href="`https://github.com/43081j/ai-policy/blob/main${path}.md`"

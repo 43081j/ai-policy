@@ -4,10 +4,8 @@
 name: '{Name}'
 # One sentence shown under the policy name.
 tagline: '{Tagline}'
-# One sentence on how the policy is enforced.
-enforcement: '{Enforcement}'
 # Rule IDs from site/app/utils/policy.ts
-rules: [guidelines, abuse]
+rules: [guidelines, human-authorship]
 ---
 
 # AI Contribution Policy
