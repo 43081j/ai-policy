@@ -4,7 +4,15 @@ tagline: Your tools are your business, but everything you submit must be yours.
 created: '2026-09-18'
 updated: '2026-09-20'
 rules:
-  [private-use, guidelines, human-authorship, ownership, disclosure, unverified]
+  [
+    private-use,
+    guidelines,
+    human-authorship,
+    ownership,
+    raw-ai-output,
+    disclosure,
+    unverified,
+  ]
 ---
 
 # AI Contribution Policy

@@ -54,7 +54,8 @@ export const rules: Rule[] = [
     id: 'human-authorship',
     kind: 'requires',
     label: 'Human authorship',
-    description: 'Everything submitted must be written by the contributor.',
+    description:
+      'Issues, descriptions, and comments must be written by the contributor.',
   },
   {
     id: 'ownership',
@@ -74,6 +75,13 @@ export const rules: Rule[] = [
     kind: 'forbids',
     label: 'AI disclosure notes',
     description: 'Submissions must not carry notes about AI tools.',
+  },
+  {
+    id: 'raw-ai-output',
+    kind: 'forbids',
+    label: 'Unreviewed AI output',
+    description:
+      'AI output submitted as-is, without the contributor’s own understanding or words.',
   },
   {
     id: 'unverified',
