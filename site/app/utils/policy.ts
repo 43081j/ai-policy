@@ -92,6 +92,11 @@ export const rules: Rule[] = [
   },
 ];
 
+function countRules(ids: Rule['id'][], kind: RuleKind) {
+  return ids.filter((id) => rules.find((rule) => rule.id === id)?.kind === kind)
+    .length;
+}
+
 export const clientContent = createContentClient({
   fetch: $fetch,
 });
@@ -111,7 +116,12 @@ export function usePolicies() {
           tagline: file.data.tagline ?? '',
           rules: (file.data.rules ?? []) as Rule['id'][],
         }))
-        .toSorted((a, b) => a.name.localeCompare(b.name));
+        .toSorted(
+          (a, b) =>
+            countRules(b.rules, 'permits') - countRules(a.rules, 'permits') ||
+            countRules(a.rules, 'forbids') - countRules(b.rules, 'forbids') ||
+            a.name.localeCompare(b.name),
+        );
     },
     { default: () => [] },
   );
