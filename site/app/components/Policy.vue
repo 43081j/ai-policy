@@ -38,11 +38,28 @@ const { copied, copy } = useClipboard({
       <Tabs :tabs="policyTabs" v-model:selected="selectedPolicyTab" />
 
       <div class="flex gap-2">
-        <a :href="downloadUrl" :download="policyFileName" class="btn">
-          Download
+        <a
+          :href="downloadUrl"
+          :download="policyFileName"
+          class="btn flex items-center"
+          aria-label="Download"
+        >
+          <span class="i-lucide:download sm:hidden"></span>
+          <span class="hidden sm:block">Download</span>
         </a>
-        <button class="btn btn-primary" @click="copy(markdown)">
-          {{ copied ? 'Copied!' : 'Copy' }}
+
+        <button
+          class="btn btn-primary flex items-center"
+          :aria-label="copied ? 'Copied' : 'Copy'"
+          @click="copy(markdown)"
+        >
+          <span
+            class="sm:hidden"
+            :class="copied ? 'i-lucide:check' : 'i-lucide:copy'"
+          ></span>
+          <span class="hidden sm:block">
+            {{ copied ? 'Copied!' : 'Copy' }}
+          </span>
         </button>
       </div>
     </div>

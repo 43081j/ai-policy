@@ -20,7 +20,7 @@ export default defineConfig({
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   shortcuts: {
-    btn: 'min-w-21 rounded-lg border border-ui-border bg-ui-surface px-3.5 py-2 text-sm font-medium text-ui-text transition-colors hover:border-ui-faint',
+    btn: 'min-w-10 rounded-lg border border-ui-border bg-ui-surface px-3.5 py-2 text-sm font-medium text-ui-text transition-colors hover:border-ui-faint',
     'btn-primary':
       'border-ui-text bg-ui-text text-ui-bg hover:(border-ui-text opacity-88)',
     caption:
