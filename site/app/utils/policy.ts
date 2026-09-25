@@ -64,9 +64,9 @@ export const rules: Rule[] = [
       'Contributors test, understand, and take responsibility for every change themselves.',
   },
   {
-    id: 'declaration',
+    id: 'disclosure',
     kind: 'requires',
-    label: 'Declared AI usage',
+    label: 'Disclose AI usage',
     description:
       'Contributors state which AI tools they used and how much of the work they did.',
   },

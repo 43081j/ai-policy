@@ -8,7 +8,7 @@ rules:
     ai-text,
     guidelines,
     ownership,
-    declaration,
+    disclosure,
     autonomous-agents,
     ai-media,
   ]
