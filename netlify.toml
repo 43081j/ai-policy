@@ -2,7 +2,6 @@
 base = "."
 command = "npm run generate -w site"
 publish = "site/dist"
-ignore = "[ \"$BRANCH\" != \"main\" ]"
 
 [build.environment]
 NODE_VERSION = "26"

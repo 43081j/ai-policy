@@ -54,7 +54,8 @@ export const rules: Rule[] = [
     id: 'human-authorship',
     kind: 'requires',
     label: 'Human authorship',
-    description: 'Everything submitted must be written by the contributor.',
+    description:
+      'Issues, descriptions, and comments must be written by the contributor.',
   },
   {
     id: 'ownership',
@@ -90,6 +91,13 @@ export const rules: Rule[] = [
     description: 'Submissions must not carry notes about AI tools.',
   },
   {
+    id: 'raw-ai-output',
+    kind: 'forbids',
+    label: 'Unreviewed AI output',
+    description:
+      'AI output submitted as-is, without the contributor’s own understanding or words.',
+  },
+  {
     id: 'unverified',
     kind: 'forbids',
     label: 'Unreproduced reports',
@@ -117,6 +125,11 @@ export const rules: Rule[] = [
   },
 ];
 
+function countRules(ids: Rule['id'][], kind: RuleKind) {
+  return ids.filter((id) => rules.find((rule) => rule.id === id)?.kind === kind)
+    .length;
+}
+
 export const clientContent = createContentClient({
   fetch: $fetch,
 });
@@ -136,7 +149,12 @@ export function usePolicies() {
           tagline: file.data.tagline ?? '',
           rules: (file.data.rules ?? []) as Rule['id'][],
         }))
-        .toSorted((a, b) => a.name.localeCompare(b.name));
+        .toSorted(
+          (a, b) =>
+            countRules(b.rules, 'permits') - countRules(a.rules, 'permits') ||
+            countRules(a.rules, 'forbids') - countRules(b.rules, 'forbids') ||
+            a.name.localeCompare(b.name),
+        );
     },
     { default: () => [] },
   );

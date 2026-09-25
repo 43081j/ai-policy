@@ -10,6 +10,7 @@ rules:
     human-authorship,
     ownership,
     provenance,
+    raw-ai-output,
     disclosure,
     unverified,
     autonomous-agents,

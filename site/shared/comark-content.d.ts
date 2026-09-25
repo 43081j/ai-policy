@@ -29,6 +29,7 @@ declare module 'comark-content' {
       '/ai-disclosed': DefaultData
       '/human-copyright': DefaultData
       '/human-responsible': DefaultData
+      '/human-voice': DefaultData
     }
   }
 }
