@@ -28,6 +28,12 @@ export default defineNuxtConfig({
           content:
             'Ready-to-use AI contribution policies for open source projects.',
         },
+        {
+          property: 'og:image',
+          content: 'https://ai-policy.dev/og-image.png',
+        },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
       ],
       link: [
         {
