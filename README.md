@@ -15,7 +15,7 @@ lives in [`policies/`](./policies).
 1. Copy [`policies/_template.md`](./policies/_template.md) to
    `policies/<name>.md`.
 2. Fill in the frontmatter: the `name` shown on the site, a one-sentence
-   `tagline`, the `created` date, and the rule IDs the policy `permits`,
+   `tagline`, the `created` date, and the `rules` the policy `permits`,
    `requires`, and `forbids`.
    Rule IDs come from [`site/app/utils/policy.ts`](./site/app/utils/policy.ts)
    When you later change a policy's text, set its `updated` date.

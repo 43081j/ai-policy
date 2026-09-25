@@ -10,9 +10,10 @@ created: '{Date}'
 # updated: '{Date}'
 # Rule IDs from site/app/utils/policy.ts, grouped by how this policy treats them.
 # Each list is optional.
-permits: []
-requires: [guidelines, human-authorship]
-forbids: []
+rules:
+  permits: []
+  requires: [guidelines, human-authorship]
+  forbids: []
 ---
 
 # AI Contribution Policy

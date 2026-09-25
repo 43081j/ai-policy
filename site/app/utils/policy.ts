@@ -20,14 +20,6 @@ export const ruleTypes: { type: RuleType; label: string }[] = [
 
 export type RulesByType = Partial<Record<RuleType, Rule['id'][]>>;
 
-export function rulesByType(data: RulesByType): RulesByType {
-  return {
-    permits: data.permits ?? [],
-    requires: data.requires ?? [],
-    forbids: data.forbids ?? [],
-  };
-}
-
 export const rules: Rule[] = [
   {
     id: 'ai-code',
@@ -107,7 +99,7 @@ export function usePolicies() {
           to: `/policies/${policySlug(file.path)}`,
           name: file.data.name,
           tagline: file.data.tagline ?? '',
-          rules: rulesByType(file.data),
+          rules: (file.data.rules ?? {}) as RulesByType,
         }))
         .toSorted(
           (a, b) =>

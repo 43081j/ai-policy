@@ -64,7 +64,7 @@ useSeoMeta({
       </p>
     </header>
 
-    <PolicyRules :rules="rulesByType(policy.data)" />
+    <PolicyRules :rules="policy.data.rules" />
 
     <div
       class="mt-10 grid gap-10 lg:(grid-cols-[minmax(0,1fr)_260px] items-start gap-12)"
