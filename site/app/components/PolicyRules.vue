@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  rules: Rule['id'][];
+  rules: RulesByType;
 }>();
 
 const { policyRuleGroups } = usePolicyRules(props.rules);
@@ -13,7 +13,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
   >
     <div
       v-for="group in policyRuleGroups"
-      :key="group.kind"
+      :key="group.type"
       class="bg-ui-surface px-6 pt-5 pb-6"
     >
       <h2 class="caption mb-3.5">{{ group.label }}</h2>
@@ -23,7 +23,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
           class="flex gap-2.5 text-sm"
           :title="rule.description"
         >
-          <RuleIcon :kind="group.kind" />
+          <RuleIcon :type="group.type" />
           <span>
             <span class="block font-medium">{{ rule.label }}</span>
             <span class="block text-ui-muted">{{ rule.description }}</span>

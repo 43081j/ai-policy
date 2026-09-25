@@ -3,16 +3,9 @@ name: Human Responsible
 tagline: Your tools are your business, but everything you submit must be yours.
 created: '2026-09-18'
 updated: '2026-09-20'
-rules:
-  [
-    private-use,
-    guidelines,
-    human-authorship,
-    ownership,
-    raw-ai-output,
-    disclosure,
-    unverified,
-  ]
+permits: [private-use]
+requires: [guidelines, human-authorship, ownership]
+forbids: [raw-ai-output, ai-disclosure, unverified]
 ---
 
 # AI Contribution Policy
