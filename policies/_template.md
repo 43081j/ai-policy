@@ -8,8 +8,12 @@ tagline: '{Tagline}'
 created: '{Date}'
 # Optional. Date the policy text last changed (YYYY-MM-DD). Keep the quotes.
 # updated: '{Date}'
-# Rule IDs from site/app/utils/policy.ts
-rules: [guidelines, human-authorship]
+# Rule IDs from site/app/utils/policy.ts, grouped by how this policy treats them.
+# Each list is optional.
+rules:
+  permits: []
+  requires: [guidelines, human-authorship]
+  forbids: []
 ---
 
 # AI Contribution Policy
