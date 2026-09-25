@@ -2,6 +2,8 @@
 import { policyFileName } from '~/shared/constants/policies';
 
 const { data: policies } = await usePolicies();
+
+defineOgImage('Policy');
 </script>
 
 <template>

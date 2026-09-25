@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-01',
-  modules: ['@nuxt/fonts', '@unocss/nuxt'],
+  modules: ['@nuxt/fonts', '@unocss/nuxt', 'nuxt-og-image'],
+  site: {
+    url: 'https://ai-policy.dev',
+    name: 'AI Contribution Policies',
+  },
   css: ['~/assets/main.css'],
   fonts: {
     families: [
@@ -28,12 +32,6 @@ export default defineNuxtConfig({
           content:
             'Ready-to-use AI contribution policies for open source projects.',
         },
-        {
-          property: 'og:image',
-          content: 'https://ai-policy.dev/og-image.png',
-        },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
       ],
       link: [
         {
