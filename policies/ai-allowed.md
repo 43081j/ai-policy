@@ -5,7 +5,7 @@ created: '2026-09-17'
 updated: '2026-09-23'
 rules:
   permits: [ai-code, ai-text, agents, private-use]
-  requires: [guidelines, provenance]
+  requires: [guidelines]
 ---
 
 # AI Contribution Policy

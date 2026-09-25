@@ -3,15 +3,9 @@ name: AI Disclosed
 tagline: AI is welcome, as long as you say when and how you used it.
 created: '2026-09-23'
 rules:
-  [
-    ai-code,
-    ai-text,
-    guidelines,
-    ownership,
-    disclosure,
-    autonomous-agents,
-    ai-media,
-  ]
+  permits: [ai-code, ai-text]
+  requires: [guidelines, ownership, disclosure]
+  forbids: [agents, ai-media]
 ---
 
 # AI Contribution Policy

@@ -3,14 +3,9 @@ name: Human Copyright
 tagline: Use the tools you like, but every line must be yours to license.
 created: '2026-09-23'
 rules:
-  [
-    private-use,
-    guidelines,
-    ownership,
-    provenance,
-    ai-coauthor,
-    autonomous-agents,
-  ]
+  permits: [private-use]
+  requires: [guidelines, ownership, provenance]
+  forbids: [ai-coauthor, agents]
 ---
 
 # AI Contribution Policy

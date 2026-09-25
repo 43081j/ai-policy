@@ -6,7 +6,7 @@ updated: '2026-09-23'
 rules:
   permits: [private-use]
   requires: [guidelines, human-authorship, ownership]
-  forbids: [raw-ai-output, ai-disclosure, unverified, autonomous-agents]
+  forbids: [raw-ai-output, disclosure, unverified, agents]
 ---
 
 # AI Contribution Policy
