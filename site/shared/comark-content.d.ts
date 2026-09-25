@@ -5,7 +5,11 @@ export interface DefaultData {
   name: string;
   tagline: string;
   created: string;
-  rules: Array<string>;
+  rules: {
+    permits?: Array<string>;
+    requires: Array<string>;
+    forbids?: Array<string>;
+  };
   updated?: string;
 }
 
@@ -13,7 +17,9 @@ export interface DefaultRow extends QueryRowBase {
   'data.name': string;
   'data.tagline': string;
   'data.created': string;
-  'data.rules': Array<string>;
+  'data.rules.permits'?: Array<string>;
+  'data.rules.requires': Array<string>;
+  'data.rules.forbids'?: Array<string>;
   'data.updated'?: string;
 }
 

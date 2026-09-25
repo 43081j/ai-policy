@@ -3,7 +3,9 @@ name: AI Allowed
 tagline: Use any AI tooling you like. The usual contribution rules still apply.
 created: '2026-09-17'
 updated: '2026-09-20'
-rules: [ai-code, ai-text, agents, private-use, guidelines]
+rules:
+  permits: [ai-code, ai-text, agents, private-use]
+  requires: [guidelines]
 ---
 
 # AI Contribution Policy

@@ -4,98 +4,83 @@ export function policySlug(path: string) {
   return path.split('/').pop() ?? path;
 }
 
-export type RuleKind = 'permits' | 'requires' | 'forbids';
+export type RuleType = 'permits' | 'requires' | 'forbids';
 
 export interface Rule {
   id: string;
-  kind: RuleKind;
   label: string;
   description: string;
 }
 
-export const ruleKinds: { kind: RuleKind; label: string }[] = [
-  { kind: 'permits', label: 'Permits' },
-  { kind: 'requires', label: 'Requires' },
-  { kind: 'forbids', label: 'Forbids' },
+export const ruleTypes: { type: RuleType; label: string }[] = [
+  { type: 'permits', label: 'Permits' },
+  { type: 'requires', label: 'Requires' },
+  { type: 'forbids', label: 'Forbids' },
 ];
+
+export type RulesByType = Partial<Record<RuleType, Rule['id'][]>>;
 
 export const rules: Rule[] = [
   {
     id: 'ai-code',
-    kind: 'permits',
     label: 'AI-generated code',
     description: 'Code written with the help of AI tools is accepted.',
   },
   {
     id: 'ai-text',
-    kind: 'permits',
     label: 'AI-written text',
     description: 'Issues, descriptions, and comments may be written with AI.',
   },
   {
     id: 'agents',
-    kind: 'permits',
     label: 'Agent submissions',
     description: 'Agents may open issues and pull requests.',
   },
   {
     id: 'private-use',
-    kind: 'permits',
     label: 'Private tooling',
     description: 'What contributors use on their own machine is not policed.',
   },
   {
     id: 'guidelines',
-    kind: 'requires',
     label: 'Contribution guidelines',
     description: 'The project’s contribution guidelines must be followed.',
   },
   {
     id: 'human-authorship',
-    kind: 'requires',
     label: 'Human authorship',
     description:
       'Issues, descriptions, and comments must be written by the contributor.',
   },
   {
     id: 'ownership',
-    kind: 'requires',
     label: 'Full ownership',
     description:
       'Contributors test, understand, and take responsibility for every change themselves.',
   },
   {
     id: 'any-ai',
-    kind: 'forbids',
     label: 'Any AI assistance',
     description: 'No part of a contribution may be made with AI tools.',
   },
   {
-    id: 'disclosure',
-    kind: 'forbids',
+    id: 'ai-disclosure',
     label: 'AI disclosure notes',
     description: 'Submissions must not carry notes about AI tools.',
   },
   {
     id: 'raw-ai-output',
-    kind: 'forbids',
     label: 'Unreviewed AI output',
     description:
       'AI output submitted as-is, without the contributor’s own understanding or words.',
   },
   {
     id: 'unverified',
-    kind: 'forbids',
     label: 'Unreproduced reports',
     description:
       'Reports and fixes for problems the contributor has not reproduced.',
   },
 ];
-
-function countRules(ids: Rule['id'][], kind: RuleKind) {
-  return ids.filter((id) => rules.find((rule) => rule.id === id)?.kind === kind)
-    .length;
-}
 
 export const clientContent = createContentClient({
   fetch: $fetch,
@@ -114,12 +99,12 @@ export function usePolicies() {
           to: `/policies/${policySlug(file.path)}`,
           name: file.data.name,
           tagline: file.data.tagline ?? '',
-          rules: (file.data.rules ?? []) as Rule['id'][],
+          rules: (file.data.rules ?? {}) as RulesByType,
         }))
         .toSorted(
           (a, b) =>
-            countRules(b.rules, 'permits') - countRules(a.rules, 'permits') ||
-            countRules(a.rules, 'forbids') - countRules(b.rules, 'forbids') ||
+            (b.rules.permits?.length ?? 0) - (a.rules.permits?.length ?? 0) ||
+            (a.rules.forbids?.length ?? 0) - (b.rules.forbids?.length ?? 0) ||
             a.name.localeCompare(b.name),
         );
     },
