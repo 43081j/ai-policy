@@ -18,6 +18,8 @@ jobs:
           cache: npm
       - name: Install Dependencies
         run: npm ci --ignore-scripts
+      - name: Check policy version snapshots
+        run: npm run policies:check
       - name: Build
         run: npm run build
       - name: Lint

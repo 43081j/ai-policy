@@ -22,7 +22,9 @@
     "lint": "oxlint && npm run format:check",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt --write .",
-    "format:check": "oxfmt --check ."
+    "format:check": "oxfmt --check .",
+    "policies:snapshot": "node scripts/policy-versions.ts",
+    "policies:check": "node scripts/policy-versions.ts --check"
   },
   "devDependencies": {
     "oxfmt": "^0.68.0",
