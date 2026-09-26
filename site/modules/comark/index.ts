@@ -24,12 +24,19 @@ export default defineNuxtModule({
     const logger = useLogger('policy-versions');
 
     const snapshotPolicies = async () => {
-      for (const file of await syncPolicyVersions()) {
-        logger.info(`Wrote ${relative(nuxt.options.rootDir, file)}`);
+      try {
+        for (const file of await syncPolicyVersions()) {
+          logger.info(`Wrote ${relative(nuxt.options.rootDir, file)}`);
+        }
+      } catch (error) {
+        logger.warn((error as Error).message);
       }
     };
 
-    await snapshotPolicies();
+    if (nuxt.options.dev) {
+      await snapshotPolicies();
+    }
+
     await content.init();
     await writeFile(
       resolve('../../shared/comark-content.d.ts'),
@@ -51,9 +58,7 @@ export default defineNuxtModule({
         }
 
         clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          snapshotPolicies().catch((error) => logger.error(error.message));
-        }, 100);
+        timeout = setTimeout(snapshotPolicies, 100);
       });
 
       nuxt.hook('close', () => watcher.close());

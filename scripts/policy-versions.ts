@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { spawnSync } from 'node:child_process';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,6 +8,7 @@ export const policiesDir = fileURLToPath(
   new URL('../policies', import.meta.url),
 );
 const versionsDir = join(policiesDir, 'versions');
+const root = dirname(policiesDir);
 
 const semverPattern = /^(\d+)\.(\d+)\.(\d+)$/;
 
@@ -109,14 +111,38 @@ async function readSnapshot(path: string): Promise<string | undefined> {
   }
 }
 
+function git(args: string[]): string | undefined {
+  const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
+
+  return result.status === 0 ? result.stdout : undefined;
+}
+
 /**
- * Writes the snapshot of each policy's current version. With `check`, nothing is
- * written. Returns the snapshots that were (or, with `check`, would be) written.
+ * Snapshots that exist on `main`. Their versions are published and must never
+ * change, so a policy edit needs a version bump instead.
+ */
+function publishedSnapshots(): Set<string> {
+  const base = ['upstream/main', 'origin/main', 'HEAD'].find((ref) =>
+    git(['rev-parse', '--verify', '--quiet', `${ref}^{commit}`]),
+  );
+  const files = base
+    ? git(['ls-tree', '-r', '--name-only', base, '--', 'policies/versions'])
+    : undefined;
+
+  return new Set(files?.split('\n').filter(Boolean));
+}
+
+/**
+ * Writes the snapshot of each policy's current version, unless that version is
+ * already published. With `check`, nothing is written. Returns the snapshots
+ * that were (or, with `check`, would be) written.
  */
 export async function syncPolicyVersions({
   check = false,
 }: { check?: boolean } = {}): Promise<string[]> {
+  const published = publishedSnapshots();
   const changed: string[] = [];
+  const unbumped: string[] = [];
 
   for (const { slug, file, source, version } of await readPolicies()) {
     const newest = (await listVersions(slug)).at(-1);
@@ -133,6 +159,11 @@ export async function syncPolicyVersions({
       continue;
     }
 
+    if (published.has(relative(root, snapshot))) {
+      unbumped.push(file);
+      continue;
+    }
+
     changed.push(snapshot);
 
     if (!check) {
@@ -141,12 +172,17 @@ export async function syncPolicyVersions({
     }
   }
 
+  if (unbumped.length) {
+    throw new Error(
+      `These policies changed, but their version is already published:\n${unbumped.map((file) => `  ${file}`).join('\n')}\n\nBump their \`version\` (a patch for typos) to publish the change.`,
+    );
+  }
+
   return changed;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const check = process.argv.includes('--check');
-  const root = dirname(policiesDir);
 
   try {
     const changed = await syncPolicyVersions({ check });

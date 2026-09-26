@@ -41,9 +41,11 @@ date:
 
 Every version is kept in `policies/versions/<name>/<version>.md` and is
 permanently available at `https://ai-policy.dev/policies/<name>/<version>`.
-Snapshots are written by `npm run dev`, `npm run build`, and
-`npm run policies:snapshot`. On pull requests, autofix.ci commits missing or
-outdated snapshots automatically.
+Once a version is on `main`, its snapshot never changes, so any further change
+to the policy, even a typo fix, needs a new version.
+
+Snapshots are written by `npm run dev` and `npm run policies:snapshot`. On pull
+requests, autofix.ci commits missing or outdated snapshots automatically.
 
 When a new version reaches `main`, a GitHub release tagged `<name>@<version>`
 is created automatically. Its notes contain the diff against the previous
