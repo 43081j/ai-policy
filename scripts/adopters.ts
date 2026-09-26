@@ -17,15 +17,22 @@ const DATA_FILE = new URL('../data/adopters.json', import.meta.url);
 // The day we see we need more, we can start having multiple batches, but for now it's not needed.
 const MAX_QUERY_PAGES = 10;
 
-// It's not a heavy query, so a token is good to have but not necessary.
+// The search endpoint requires authentication.
 const token = process.env.GITHUB_TOKEN;
+
+if (!token) {
+  console.error(
+    'GITHUB_TOKEN is required. Make sure to add it in your .env file.',
+  );
+  process.exit(1);
+}
 
 function github(path: string) {
   return fetch(`https://api.github.com${path}`, {
     headers: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      ...(token && { Authorization: `Bearer ${token}` }),
+      Authorization: `Bearer ${token}`,
     },
   });
 }
