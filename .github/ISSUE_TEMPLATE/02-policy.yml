@@ -1,0 +1,45 @@
+name: "\U00002696\U0000FE0F Policy Suggestion"
+description: Suggest a new policy or a change to an existing one
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the collection of AI policies! Please fill out this form as completely as possible.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of suggestion is this?
+      options:
+        - A new policy
+        - A change to an existing policy
+    validations:
+      required: true
+  - type: input
+    id: policy
+    attributes:
+      label: Which policy does this concern?
+      description: Leave empty when suggesting a new policy.
+      placeholder: https://ai-policy.dev/...
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe your suggestion
+      description: What should the policy say or what should change? Why would projects benefit from it?
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Prior art
+      description: Links to projects that already use a similar policy, if any.
+    validations:
+      required: false
+  - type: checkboxes
+    id: will-pr
+    attributes:
+      label: Participation
+      options:
+        - label: I am willing to submit a pull request for this issue.
+          required: false
