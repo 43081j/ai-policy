@@ -54,40 +54,33 @@ defineOgImage('Policy');
     </section>
 
     <section aria-labelledby="howto-heading">
-      <h2
-        id="howto-heading"
-        class="mt-24 mb-2 text-2xl font-semibold tracking-tight text-balance"
-      >
-        How to use a policy
-      </h2>
-      <ol class="mt-6 grid gap-8 md:grid-cols-3">
-        <li class="border-t border-ui-text pt-5">
+      <h2 id="howto-heading" class="caption mt-24">How to use a policy</h2>
+      <ol class="mt-4 grid gap-6 md:grid-cols-3">
+        <li class="border-t border-ui-border pt-4">
           <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
             01
           </span>
-          <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">
-            Choose
-          </h3>
-          <p class="text-ui-muted">
+          <h3 class="mt-2 mb-1 text-sm font-medium">Choose</h3>
+          <p class="text-sm text-ui-muted text-pretty">
             Compare the rules each policy sets and pick the one that fits.
           </p>
         </li>
-        <li class="border-t border-ui-text pt-5">
+        <li class="border-t border-ui-border pt-4">
           <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
             02
           </span>
-          <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Copy</h3>
-          <p class="text-ui-muted">
+          <h3 class="mt-2 mb-1 text-sm font-medium">Copy</h3>
+          <p class="text-sm text-ui-muted text-pretty">
             Copy or download the Markdown and save it as {{ policyFileName }} in
             your repository.
           </p>
         </li>
-        <li class="border-t border-ui-text pt-5">
+        <li class="border-t border-ui-border pt-4">
           <span class="font-mono text-xs text-ui-muted" aria-hidden="true">
             03
           </span>
-          <h3 class="mt-2 mb-1.5 text-lg font-semibold tracking-tight">Link</h3>
-          <p class="text-ui-muted">
+          <h3 class="mt-2 mb-1 text-sm font-medium">Link</h3>
+          <p class="text-sm text-ui-muted text-pretty">
             Reference it from your CONTRIBUTING.md and pull request template.
           </p>
         </li>
