@@ -1,5 +1,5 @@
 type RuleGroup = {
-  kind: RuleKind;
+  type: RuleType;
   label: string;
   rules: Rule[];
 };
@@ -8,14 +8,14 @@ type usePolicyRulesReturn = {
   policyRuleGroups: ComputedRef<RuleGroup[]>;
 };
 
-export function usePolicyRules(ruleIds: Rule['id'][]): usePolicyRulesReturn {
+export function usePolicyRules(ruleIds: RulesByType): usePolicyRulesReturn {
   const policyRuleGroups = computed<RuleGroup[]>(() => {
-    return ruleKinds.map(({ kind, label }) => {
+    return ruleTypes.map(({ type, label }) => {
       return {
-        kind,
+        type,
         label,
         rules: rules.filter((rule) => {
-          return rule.kind === kind && ruleIds.includes(rule.id);
+          return ruleIds[type]?.includes(rule.id);
         }),
       };
     });

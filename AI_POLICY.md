@@ -1,14 +1,3 @@
----
-name: Human Voice
-version: '1.0.0'
-tagline: AI can help you, but it must never speak or think for you.
-created: '2026-09-23'
-rules:
-  permits: [ai-code]
-  requires: [guidelines, human-authorship, ownership]
-  forbids: [raw-ai-output]
----
-
 # AI Contribution Policy
 
 This project **welcomes the thoughtful use of AI tools** when contributing, yet asks all contributors to follow two core principles.
@@ -41,3 +30,5 @@ Our aim is ensuring quality and maintaining the joy of collaborating and communi
 - Comments, issues, and pull request descriptions must be written in your own voice
 - Contributions must be fully understood and explainable by the contributor
 - Contribution guidelines must still be followed
+
+Read more about this and other AI contribution policies on [ai-policy.dev](https://ai-policy.dev/)

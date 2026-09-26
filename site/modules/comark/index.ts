@@ -1,4 +1,5 @@
 import { watch } from 'node:fs';
+import { writeFile } from 'node:fs/promises';
 import { relative } from 'node:path';
 import {
   addServerHandler,
@@ -7,7 +8,7 @@ import {
   defineNuxtModule,
   useLogger,
 } from 'nuxt/kit';
-import { writeSourceTypes } from 'comark-content/build';
+import { generateSourceTypes } from 'comark-content';
 import {
   policiesDir,
   syncPolicyVersions,
@@ -30,7 +31,10 @@ export default defineNuxtModule({
 
     await snapshotPolicies();
     await content.init();
-    await writeSourceTypes(content, { outDir: resolve('../../shared') });
+    await writeFile(
+      resolve('../../shared/comark-content.d.ts'),
+      sortContentPaths(await generateSourceTypes(content)),
+    );
 
     addServerHandler({
       route: '/api/content/**',
@@ -75,4 +79,13 @@ function policyRoute(path: string): [slug: string, version?: string] {
   const [first = '', slug = '', version] = path.split('/').filter(Boolean);
 
   return first === 'versions' ? [slug, version] : [first];
+}
+
+// Nested version folders are listed in a random order, which would reorder
+// the generated paths on every run.
+function sortContentPaths(types: string): string {
+  return types.replace(
+    /(?:^ {6}'[^']+': \w+\n)+/gm,
+    (paths) => `${paths.trimEnd().split('\n').toSorted().join('\n')}\n`,
+  );
 }

@@ -3,7 +3,7 @@ const props = defineProps<{
   name: string;
   to: string;
   tagline: string;
-  rules: Rule['id'][];
+  rules: RulesByType;
 }>();
 
 const { policyRuleGroups } = usePolicyRules(props.rules);
@@ -28,7 +28,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
     <dl class="contents">
       <div
         v-for="group in policyRuleGroups"
-        :key="group.kind"
+        :key="group.type"
         :class="{ 'max-md:hidden': !group.rules.length }"
       >
         <dt class="caption mb-2 md:sr-only">{{ group.label }}</dt>
@@ -40,7 +40,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
               class="flex items-center gap-2"
               :title="rule.description"
             >
-              <RuleIcon :kind="group.kind" small />
+              <RuleIcon :type="group.type" small />
               {{ rule.label }}
             </li>
           </ul>

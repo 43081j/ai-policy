@@ -2,6 +2,8 @@
 import { policyFileName } from '~/shared/constants/policies';
 
 const { data: policies } = await usePolicies();
+
+defineOgImage('Policy');
 </script>
 
 <template>
@@ -30,8 +32,8 @@ const { data: policies } = await usePolicies();
           {{ policies.length === 1 ? 'policy' : 'policies' }}
         </p>
         <p
-          v-for="{ kind, label } in ruleKinds"
-          :key="kind"
+          v-for="{ type, label } in ruleTypes"
+          :key="type"
           class="caption max-md:hidden"
           aria-hidden="true"
         >

@@ -6,7 +6,11 @@ export interface DefaultData {
   version: string;
   tagline: string;
   created: string;
-  rules: Array<string>;
+  rules: {
+    permits?: Array<string>;
+    requires: Array<string>;
+    forbids?: Array<string>;
+  };
   updated?: string;
 }
 
@@ -15,7 +19,9 @@ export interface DefaultRow extends QueryRowBase {
   'data.version': string;
   'data.tagline': string;
   'data.created': string;
-  'data.rules': Array<string>;
+  'data.rules.permits'?: Array<string>;
+  'data.rules.requires': Array<string>;
+  'data.rules.forbids'?: Array<string>;
   'data.updated'?: string;
 }
 
@@ -31,9 +37,9 @@ declare module 'comark-content' {
       '/human-responsible': DefaultData
       '/human-voice': DefaultData
       '/versions/ai-allowed/1.0.0': DefaultData
-      '/versions/human-voice/1.0.0': DefaultData
-      '/versions/human-responsible/1.0.0': DefaultData
       '/versions/ai-disallowed/1.0.0': DefaultData
+      '/versions/human-responsible/1.0.0': DefaultData
+      '/versions/human-voice/1.0.0': DefaultData
     }
   }
 }

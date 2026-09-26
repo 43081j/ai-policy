@@ -16,7 +16,7 @@ lives in [`policies/`](./policies).
    `policies/<name>.md`.
 2. Fill in the frontmatter: the `name` shown on the site, the `version`
    (start at `1.0.0`), a one-sentence `tagline`, the `created` date, and the
-   `rules` the policy applies. Rule IDs come from
+   `rules` the policy `permits`, `requires`, and `forbids`. Rule IDs come from
    [`site/app/utils/policy.ts`](./site/app/utils/policy.ts).
 3. Write the policy body under the `AI Contribution Policy` heading, followed
    by a short `Summary` list. The website adds an attribution line with the

@@ -27,6 +27,11 @@ useSeoMeta({
     : `${name} (${activeVersion}) · AI Contribution Policies`,
   description: policy.data.tagline,
 });
+
+defineOgImage('Policy', {
+  title: name,
+  description: policy.data.tagline,
+});
 </script>
 
 <template>
@@ -78,7 +83,7 @@ useSeoMeta({
       <NuxtLink :to="`/policies/${slug}`">View the latest version</NuxtLink>
     </p>
 
-    <PolicyRules v-if="policy.data.rules" :rules="policy.data.rules" />
+    <PolicyRules :rules="policy.data.rules" />
 
     <div
       class="mt-10 grid gap-10 lg:(grid-cols-[minmax(0,1fr)_260px] items-start gap-12)"
