@@ -1,7 +1,10 @@
 [build]
 base = "."
-command = "npm run generate -w site"
+command = "pnpm --filter ./site generate"
 publish = "site/dist"
 
 [build.environment]
-NODE_VERSION = "26"
+# Node 25+ no longer bundles Corepack, so Netlify would fall back to an old one
+# that can't run pnpm 11+. Node 24 only bootstraps pnpm; devEngines.runtime
+# makes pnpm run the build itself on Node 26.
+NODE_VERSION = "24"

@@ -5,7 +5,7 @@
     ".output",
     ".data",
     "dist",
-    "package-lock.json",
+    "pnpm-lock.yaml",
     "site/shared/comark-content.d.ts"
   ],
   "printWidth": 80,
