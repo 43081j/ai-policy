@@ -24,33 +24,39 @@ export const rules: Rule[] = [
   {
     id: 'ai-code',
     label: 'AI-generated code',
-    description: 'Code written with the help of AI tools is accepted.',
+    description: 'Code written with the help of AI tools.',
   },
   {
     id: 'ai-text',
     label: 'AI-written text',
-    description: 'Issues, descriptions, and comments may be written with AI.',
+    description: 'Issues, descriptions, and comments written with AI.',
+  },
+  {
+    id: 'ai-media',
+    label: 'AI-generated media',
+    description: 'Images, audio, video, and other media generated with AI.',
   },
   {
     id: 'agents',
     label: 'Agent submissions',
-    description: 'Agents may open issues and pull requests.',
+    description:
+      'Agents and automated accounts opening issues, pull requests, or comments.',
   },
   {
     id: 'private-use',
     label: 'Private tooling',
-    description: 'What contributors use on their own machine is not policed.',
+    description: 'Whatever tools contributors use on their own machine.',
   },
   {
     id: 'guidelines',
     label: 'Contribution guidelines',
-    description: 'The project’s contribution guidelines must be followed.',
+    description: 'Following the project’s contribution guidelines.',
   },
   {
     id: 'human-authorship',
     label: 'Human authorship',
     description:
-      'Issues, descriptions, and comments must be written by the contributor.',
+      'Issues, descriptions, and comments written by the contributor.',
   },
   {
     id: 'ownership',
@@ -59,14 +65,21 @@ export const rules: Rule[] = [
       'Contributors test, understand, and take responsibility for every change themselves.',
   },
   {
-    id: 'any-ai',
-    label: 'Any AI assistance',
-    description: 'No part of a contribution may be made with AI tools.',
+    id: 'disclosure',
+    label: 'AI disclosure',
+    description:
+      'Stating which AI tools were used and how much of the work they did.',
   },
   {
-    id: 'ai-disclosure',
-    label: 'AI disclosure notes',
-    description: 'Submissions must not carry notes about AI tools.',
+    id: 'provenance',
+    label: 'Licensing rights',
+    description:
+      'Confirming the right to submit the work under the project’s license.',
+  },
+  {
+    id: 'any-ai',
+    label: 'Any AI assistance',
+    description: 'Using AI tools for any part of a contribution.',
   },
   {
     id: 'raw-ai-output',
@@ -79,6 +92,11 @@ export const rules: Rule[] = [
     label: 'Unreproduced reports',
     description:
       'Reports and fixes for problems the contributor has not reproduced.',
+  },
+  {
+    id: 'ai-coauthor',
+    label: 'AI co-author credits',
+    description: 'Commits and pull requests listing AI tools as co-authors.',
   },
 ];
 
