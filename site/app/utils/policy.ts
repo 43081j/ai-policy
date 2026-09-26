@@ -4,6 +4,18 @@ export function policySlug(path: string) {
   return path.split('/').pop() ?? path;
 }
 
+export function policyVersionPath(slug: string, version: string) {
+  return `/versions/${slug}/${version}`;
+}
+
+export function policyPermalink(slug: string, version: string) {
+  return `/policies/${slug}/${version}`;
+}
+
+export function policyReleaseUrl(slug: string, version: string) {
+  return `https://github.com/43081j/ai-policy/releases/tag/${encodeURIComponent(`${slug}@${version}`)}`;
+}
+
 export type RuleType = 'permits' | 'requires' | 'forbids';
 
 export interface Rule {
@@ -93,7 +105,11 @@ export function usePolicies() {
       const files = await clientContent.list();
 
       return files
-        .filter((file) => !policySlug(file.path).startsWith('_'))
+        .filter(
+          (file) =>
+            !file.path.startsWith('/versions/') &&
+            !policySlug(file.path).startsWith('_'),
+        )
         .map((file) => ({
           path: file.path,
           to: `/policies/${policySlug(file.path)}`,

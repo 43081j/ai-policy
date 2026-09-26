@@ -1,22 +1,23 @@
-name: Build & Test
+name: Release Policies
 
 on:
   push:
     branches: [main]
-  pull_request:
+    paths:
+      - 'policies/**'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 permissions: {}
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  lint:
-    name: lint
+  release:
+    name: Release Policies
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,12 +28,9 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 26.x
-          cache: npm
-      - name: Install Dependencies
-        run: npm ci --ignore-scripts
       - name: Check policy version snapshots
-        run: npm run policies:check
-      - name: Build
-        run: npm run build
-      - name: Lint
-        run: npm run lint
+        run: node scripts/policy-versions.ts --check
+      - name: Create releases
+        run: node scripts/release-policies.ts
+        env:
+          GH_TOKEN: ${{ github.token }}
