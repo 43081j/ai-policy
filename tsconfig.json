@@ -14,5 +14,5 @@
     "resolveJsonModule": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts"]
 }
