@@ -19,7 +19,9 @@
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.134",
+    "@takumi-rs/core": "^2.14.0",
     "@unocss/nuxt": "^66.10.5",
+    "nuxt-og-image": "^6.9.0",
     "unocss": "^66.10.5"
   }
 }

@@ -23,6 +23,11 @@ useSeoMeta({
   title: `${name} · AI Contribution Policies`,
   description: policy.value.data.tagline,
 });
+
+defineOgImage('Policy', {
+  title: name,
+  description: policy.value.data.tagline,
+});
 </script>
 
 <template>

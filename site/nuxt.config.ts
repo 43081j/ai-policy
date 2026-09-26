@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-01',
-  modules: ['@nuxt/fonts', '@unocss/nuxt'],
+  modules: ['@nuxt/fonts', '@unocss/nuxt', 'nuxt-og-image'],
+  site: {
+    url: 'https://ai-policy.dev',
+    name: 'AI Contribution Policies',
+  },
   css: ['~/assets/main.css'],
   fonts: {
     families: [
