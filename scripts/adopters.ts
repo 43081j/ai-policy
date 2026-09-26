@@ -10,6 +10,7 @@ interface SearchResponse {
 }
 
 const LINK = 'ai-policy.dev';
+const HEADING = 'AI Contribution Policy';
 const OWN_REPO = '43081j/ai-policy';
 const DATA_FILE = new URL('../data/adopters.json', import.meta.url);
 
@@ -38,7 +39,7 @@ function github(path: string) {
 }
 
 async function search(): Promise<Set<string>> {
-  const query = encodeURIComponent(`"${LINK}" extension:md`);
+  const query = encodeURIComponent(`"${LINK}" "${HEADING}" extension:md`);
   const repos = new Set<string>();
 
   for (let page = 1; page <= MAX_QUERY_PAGES; page++) {
