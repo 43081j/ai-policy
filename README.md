@@ -21,7 +21,7 @@ lives in [`policies/`](./policies).
    When you later change a policy's text, set its `updated` date.
 3. Write the policy body under the `AI Contribution Policy` heading, followed
    by a short `Summary` list and the link back to the website.
-4. Run `npm run lint` and, if you want to see it rendered, `npm run dev`.
+4. Run `pnpm run lint` and, if you want to see it rendered, `pnpm run dev`.
 
 ## License
 

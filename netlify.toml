@@ -1,6 +1,6 @@
 [build]
 base = "."
-command = "npm run generate -w site"
+command = "pnpm --filter ./site generate"
 publish = "site/dist"
 
 [build.environment]
