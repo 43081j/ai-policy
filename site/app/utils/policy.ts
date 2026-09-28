@@ -6,10 +6,19 @@ export function policySlug(path: string) {
 
 export type RuleType = 'permits' | 'requires' | 'forbids';
 
+export interface RuleQuestion {
+  title: string;
+  detail: string;
+  yes: string;
+  no: string;
+}
+
 export interface Rule {
   id: string;
   label: string;
   description: string;
+  /** Quiz wording. Falls back to the description when omitted. */
+  question?: RuleQuestion;
 }
 
 export const ruleTypes: { type: RuleType; label: string }[] = [
@@ -25,21 +34,49 @@ export const rules: Rule[] = [
     id: 'ai-code',
     label: 'AI-generated code',
     description: 'Code written with the help of AI tools is accepted.',
+    question: {
+      title: 'Can they submit AI-generated code?',
+      detail:
+        'Assume the contributor understands, tests, and takes responsibility for the code before submitting it.',
+      yes: 'Yes, if they understand it',
+      no: 'No, the submitted code must be their own',
+    },
   },
   {
     id: 'ai-text',
     label: 'AI-written text',
     description: 'Issues, descriptions, and comments may be written with AI.',
+    question: {
+      title: 'Can AI write their public messages?',
+      detail:
+        'This includes issue reports, pull request descriptions, comments, and replies to review.',
+      yes: 'Yes, AI-written messages are welcome',
+      no: 'No, contributors should write in their own words',
+    },
   },
   {
     id: 'agents',
     label: 'Agent submissions',
     description: 'Agents may open issues and pull requests.',
+    question: {
+      title: 'Can agents submit directly?',
+      detail:
+        'An agent could open an issue or pull request without a person writing and posting each action.',
+      yes: 'Yes, agents may submit',
+      no: 'No, a person must submit',
+    },
   },
   {
     id: 'private-use',
     label: 'Private tooling',
     description: 'What contributors use on their own machine is not policed.',
+    question: {
+      title: 'Can contributors use AI privately?',
+      detail:
+        'Think of research, brainstorming, or drafting on their own machine, even when the submitted work must be their own.',
+      yes: 'Yes, private use is their business',
+      no: 'No, contributions must involve no AI assistance',
+    },
   },
   {
     id: 'guidelines',

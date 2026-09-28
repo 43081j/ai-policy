@@ -3,7 +3,7 @@ name: Human Voice
 tagline: AI can help you, but it must never speak or think for you.
 created: '2026-09-23'
 rules:
-  permits: [ai-code]
+  permits: [ai-code, private-use]
   requires: [guidelines, human-authorship, ownership]
   forbids: [raw-ai-output]
 ---
