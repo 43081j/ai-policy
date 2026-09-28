@@ -10,6 +10,9 @@ The full list lives at [ai-policy.dev](https://ai-policy.dev/), where each
 policy can be compared side by side, copied, or downloaded. The source markdown
 lives in [`policies/`](./policies).
 
+Maintainers can use the [policy finder](https://ai-policy.dev/quiz) to see which
+policy best matches their answers about AI use in contributions.
+
 ## Contributing a policy
 
 1. Copy [`policies/_template.md`](./policies/_template.md) to
