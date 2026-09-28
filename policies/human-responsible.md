@@ -2,11 +2,11 @@
 name: Human Responsible
 tagline: Your tools are your business, but everything you submit must be yours.
 created: '2026-09-18'
-updated: '2026-09-20'
+updated: '2026-09-23'
 rules:
   permits: [private-use]
   requires: [guidelines, human-authorship, ownership]
-  forbids: [raw-ai-output, ai-disclosure, unverified]
+  forbids: [raw-ai-output, disclosure, unverified, agents]
 ---
 
 # AI Contribution Policy
@@ -40,6 +40,7 @@ By opening an issue, pull request, or any other submission, you affirm that:
 
 - You wrote it yourself.
 - You tested it and understand every part of it.
+- You have the right to submit it under the project's license.
 - You will respond to review yourself, in your own words.
 
 ## Enforcement
