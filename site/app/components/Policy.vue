@@ -3,15 +3,37 @@ import { useClipboard } from '@vueuse/core';
 import type { ContentFile } from 'comark-content';
 import { MarkdownDocument } from '@comark/vue';
 import { renderMarkdown } from 'comark/render';
-import { policyFileName } from '~/shared/constants/policies';
+import { policyFileName, siteUrl } from '~/shared/constants/policies';
 
 const props = defineProps<{
   policy: ContentFile;
+  slug: string;
+  version: string;
 }>();
+
+const policyDocument = computed<ContentFile>(() => ({
+  ...props.policy,
+  nodes: [
+    ...props.policy.nodes,
+    [
+      'p',
+      {},
+      'This policy is based on the ',
+      [
+        'a',
+        { href: `${siteUrl}${policyPermalink(props.slug, props.version)}` },
+        `${props.policy.data.name} policy, version ${props.version}`,
+      ],
+      ` from ${props.policy.data.updated ?? props.policy.data.created}. Read more about this and other AI contribution policies on `,
+      ['a', { href: `${siteUrl}/` }, 'ai-policy.dev'],
+      '.',
+    ],
+  ],
+}));
 
 const { data: markdown } = await useAsyncData(
   `policy-markdown:${props.policy.path}`,
-  () => renderMarkdown({ nodes: props.policy.nodes }),
+  () => renderMarkdown({ nodes: policyDocument.value.nodes }),
   {
     default: () => '',
     watch: [() => props.policy.path],
@@ -66,7 +88,7 @@ const { copied, copy } = useClipboard({
 
     <MarkdownDocument
       v-if="selectedPolicyTab === 'preview'"
-      :value="policy"
+      :value="policyDocument"
       class="policy-prose"
     />
 

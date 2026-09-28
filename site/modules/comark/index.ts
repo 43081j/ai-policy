@@ -1,10 +1,11 @@
+import { writeFile } from 'node:fs/promises';
 import {
   addServerHandler,
   addServerPlugin,
   createResolver,
   defineNuxtModule,
 } from 'nuxt/kit';
-import { writeSourceTypes } from 'comark-content/build';
+import { generateSourceTypes } from 'comark-content';
 import { content } from './content';
 
 export default defineNuxtModule({
@@ -15,7 +16,10 @@ export default defineNuxtModule({
     const { resolve } = createResolver(import.meta.url);
 
     await content.init();
-    await writeSourceTypes(content, { outDir: resolve('../../shared') });
+    await writeFile(
+      resolve('../../shared/comark-content.d.ts'),
+      sortContentPaths(await generateSourceTypes(content)),
+    );
 
     addServerHandler({
       route: '/api/content/**',
@@ -28,14 +32,31 @@ export default defineNuxtModule({
 
     nuxt.hook('prerender:routes', async (ctx) => {
       for (const file of await content.list()) {
-        const slug = file.path.split('/').pop() ?? file.path;
+        const [slug, version] = policyRoute(file.path);
 
         if (slug.startsWith('_')) {
           continue;
         }
 
-        ctx.routes.add(`/policies/${slug}`);
+        ctx.routes.add(
+          version ? `/policies/${slug}/${version}` : `/policies/${slug}`,
+        );
       }
     });
   },
 });
+
+function policyRoute(path: string): [slug: string, version?: string] {
+  const [first = '', slug = '', version] = path.split('/').filter(Boolean);
+
+  return first === 'versions' ? [slug, version] : [first];
+}
+
+// Nested version folders are listed in a random order, which would reorder
+// the generated paths on every run.
+function sortContentPaths(types: string): string {
+  return types.replace(
+    /(?:^ {6}'[^']+': \w+\n)+/gm,
+    (paths) => `${paths.trimEnd().split('\n').toSorted().join('\n')}\n`,
+  );
+}

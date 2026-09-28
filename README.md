@@ -14,14 +14,33 @@ lives in [`policies/`](./policies).
 
 1. Copy [`policies/_template.md`](./policies/_template.md) to
    `policies/<name>.md`.
-2. Fill in the frontmatter: the `name` shown on the site, a one-sentence
-   `tagline`, the `created` date, and the `rules` the policy `permits`,
-   `requires`, and `forbids`.
-   Rule IDs come from [`site/app/utils/policy.ts`](./site/app/utils/policy.ts)
-   When you later change a policy's text, set its `updated` date.
+2. Fill in the frontmatter: the `name` shown on the site, the `version`
+   (start at `1.0.0`), a one-sentence `tagline`, the `created` date, and the
+   `rules` the policy `permits`, `requires`, and `forbids`. Rule IDs come from
+   [`site/app/utils/policy.ts`](./site/app/utils/policy.ts).
 3. Write the policy body under the `AI Contribution Policy` heading, followed
-   by a short `Summary` list and the link back to the website.
-4. Run `npm run lint` and, if you want to see it rendered, `npm run dev`.
+   by a short `Summary` list. The website adds an attribution line with the
+   version's permalink when the policy is copied or downloaded.
+4. Copy the finished file to `policies/versions/<name>/1.0.0.md`.
+5. Run `npm run lint` and, if you want to see it rendered, `npm run dev`.
+
+## Versions
+
+Each policy has its own [semantic version](https://semver.org/) in its
+frontmatter. When you change a policy, bump its `version` and set its `updated`
+date:
+
+- **Major:** a substantial change to obligations, rights, scope, or
+  enforcement.
+- **Minor:** clarifications, new examples, or added sections that don't change
+  what anyone is committing to.
+- **Patch:** typos, formatting, and similar fixes.
+
+Every version is kept in `policies/versions/<name>/<version>.md` and is
+permanently available at `https://ai-policy.dev/policies/<name>/<version>`.
+After changing a policy, copy it to a new file there, named after its new
+version. Once a version is on `main`, its file never changes, so any further
+change to the policy, even a typo fix, needs a new version.
 
 ## License
 
