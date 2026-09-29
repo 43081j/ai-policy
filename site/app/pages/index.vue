@@ -19,6 +19,12 @@ defineOgImage('Policy');
         welcome AI contributions, want everything written by humans, or
         something in between.
       </div>
+      <NuxtLink
+        to="/quiz"
+        class="mt-8 inline-flex items-center gap-2 rounded-lg bg-ui-text px-4 py-2.5 text-sm font-medium text-ui-bg no-underline transition-opacity hover:opacity-80"
+      >
+        Find your policy <span aria-hidden="true">→</span>
+      </NuxtLink>
     </section>
 
     <section class="mt-14" aria-labelledby="policies-heading">

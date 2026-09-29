@@ -9,10 +9,20 @@ export type RuleType = 'permits' | 'requires' | 'forbids';
 export interface Rule {
   id: string;
   label: string;
+  /**
+   * What the rule covers, without taking a side. It is read after the rule
+   * type ("Permits", "Requires", "Forbids") and in quiz questions such as
+   * "Should your policy forbid this?", so keep it a neutral noun phrase.
+   */
   description: string;
 }
 
-export const ruleTypes: { type: RuleType; label: string }[] = [
+type RuleTypeDefinition = {
+  type: RuleType;
+  label: string;
+};
+
+export const ruleTypes: RuleTypeDefinition[] = [
   { type: 'permits', label: 'Permits' },
   { type: 'requires', label: 'Requires' },
   { type: 'forbids', label: 'Forbids' },
@@ -24,49 +34,51 @@ export const rules: Rule[] = [
   {
     id: 'ai-code',
     label: 'AI-generated code',
-    description: 'Code written with the help of AI tools is accepted.',
+    description: 'Code written with the help of AI tools.',
   },
   {
     id: 'ai-text',
     label: 'AI-written text',
-    description: 'Issues, descriptions, and comments may be written with AI.',
+    description:
+      'Issues, pull request descriptions, and comments written with AI.',
   },
   {
     id: 'agents',
     label: 'Agent submissions',
-    description: 'Agents may open issues and pull requests.',
+    description: 'Issues and pull requests opened by AI agents on their own.',
   },
   {
     id: 'private-use',
     label: 'Private tooling',
-    description: 'What contributors use on their own machine is not policed.',
+    description:
+      'Any tools, AI or not, that contributors use on their own machine.',
   },
   {
     id: 'guidelines',
     label: 'Contribution guidelines',
-    description: 'The project’s contribution guidelines must be followed.',
+    description: 'Following the project’s contribution guidelines.',
   },
   {
     id: 'human-authorship',
     label: 'Human authorship',
     description:
-      'Issues, descriptions, and comments must be written by the contributor.',
+      'Issues, descriptions, and comments written by the contributor in their own words.',
   },
   {
     id: 'ownership',
     label: 'Full ownership',
     description:
-      'Contributors test, understand, and take responsibility for every change themselves.',
+      'Testing, understanding, and taking responsibility for every change.',
   },
   {
     id: 'any-ai',
     label: 'Any AI assistance',
-    description: 'No part of a contribution may be made with AI tools.',
+    description: 'AI tools used for any part of a contribution.',
   },
   {
     id: 'ai-disclosure',
     label: 'AI disclosure notes',
-    description: 'Submissions must not carry notes about AI tools.',
+    description: 'Notes in a submission about which AI tools were used.',
   },
   {
     id: 'raw-ai-output',
