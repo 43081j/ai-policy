@@ -15,7 +15,7 @@ Before creating the pull request, please make sure you do the following:
 - Check that there isn't already a PR that solves the problem the same way.
 - When adding or changing a policy, fill in its frontmatter (see policies/_template.md)
   and set the `updated` date if you changed the text of an existing policy.
-- Run `npm run lint` locally.
+- Run `pnpm run lint` locally.
 
 Thank you for contributing!
 ----------------------------------------------------------------------->

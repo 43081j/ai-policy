@@ -12,14 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/43081j/ai-policy.git"
   },
-  "workspaces": [
-    "site"
-  ],
   "type": "module",
   "scripts": {
-    "dev": "npm run dev -w site",
-    "build": "npm run build -w site",
-    "lint": "oxlint && npm run format:check",
+    "dev": "pnpm --filter ./site dev",
+    "build": "pnpm --filter ./site build",
+    "lint": "oxlint && pnpm run format:check",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
@@ -32,9 +29,16 @@
     "oxlint": "^1.83.0",
     "typescript": "^7.0.2"
   },
-  "allowScripts": {
-    "esbuild@0.27.7": true,
-    "esbuild@0.28.2": true,
-    "fsevents@2.3.3": true
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^26.0.0",
+      "onFail": "download"
+    }
   }
 }

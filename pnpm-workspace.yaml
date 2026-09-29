@@ -1,0 +1,5 @@
+packages:
+  - site
+
+allowBuilds:
+  esbuild: false
