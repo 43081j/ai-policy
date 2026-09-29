@@ -1,8 +1,6 @@
-name: Build & Test
+name: autofix.ci
 
 on:
-  push:
-    branches: [main]
   pull_request:
 
 permissions: {}
@@ -12,8 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: lint
+  autofix:
+    name: autofix
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,12 +25,7 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 26.x
-          cache: npm
-      - name: Install Dependencies
-        run: npm ci --ignore-scripts
-      - name: Check policy version snapshots
-        run: npm run policies:check
-      - name: Build
-        run: npm run build
-      - name: Lint
-        run: npm run lint
+      - name: Write policy version snapshots
+        run: node scripts/policy-versions.ts
+      - name: Commit fixes
+        uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a # v1.3.4

@@ -12,6 +12,10 @@ export function policyPermalink(slug: string, version: string) {
   return `/policies/${slug}/${version}`;
 }
 
+export function policyReleaseUrl(slug: string, version: string) {
+  return `https://github.com/43081j/ai-policy/releases/tag/${encodeURIComponent(`${slug}@${version}`)}`;
+}
+
 export type RuleType = 'permits' | 'requires' | 'forbids';
 
 export interface Rule {
