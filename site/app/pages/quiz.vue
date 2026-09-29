@@ -1,25 +1,27 @@
 <script setup lang="ts">
 const { data: policies } = await usePolicies();
-const answers = ref<{ ruleId: Rule['id']; answer: boolean }[]>([]);
+const answers = ref<{ question: QuizQuestion; answer: QuizAnswer }[]>([]);
 
 // Replay the answers to find who is still in the running and what to ask next.
-const candidates = computed(() =>
-  answers.value.reduce(
-    (remaining, { ruleId, answer }) =>
-      filterCandidates(remaining, ruleId, answer),
-    policies.value,
-  ),
-);
+const candidates = computed(() => {
+  return answers.value.reduce((remaining, { question, answer }) => {
+    return filterCandidates(remaining, question, answer);
+  }, policies.value);
+});
 
-const question = computed(() =>
-  nextQuestion(
+const question = computed(() => {
+  return nextQuestion(
     candidates.value,
-    answers.value.map(({ ruleId }) => ruleId),
-  ),
-);
+    answers.value.map((answer) => answer.question.rule.id),
+  );
+});
 
-function choose(answer: boolean) {
-  answers.value.push({ ruleId: question.value!.ruleId, answer });
+const verb = computed(() => {
+  return question.value && quizVerbs[question.value.type];
+});
+
+function choose(answer: QuizAnswer) {
+  answers.value.push({ question: question.value!, answer });
 }
 
 function back() {
@@ -61,14 +63,15 @@ useSeoMeta({
       </p>
 
       <div :key="answers.length" class="quiz-enter mt-10">
+        <p class="caption">Should your policy {{ verb }} this?</p>
         <h2
           id="question-title"
-          class="text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+          class="mt-3 text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
         >
-          {{ question.title }}
+          {{ question.rule.label }}
         </h2>
         <p class="mt-3 max-w-xl text-ui-muted text-pretty">
-          {{ question.detail }}
+          {{ question.rule.description }}
         </p>
 
         <div class="mt-8 grid gap-3">
@@ -80,7 +83,7 @@ useSeoMeta({
             @click="choose(option)"
           >
             <span class="font-medium">
-              {{ option ? question.yes : question.no }}
+              {{ option ? `Yes, ${verb} it` : `No, don’t ${verb} it` }}
             </span>
             <span
               class="text-ui-faint transition-colors group-hover:text-ui-text"
@@ -91,14 +94,23 @@ useSeoMeta({
         </div>
       </div>
 
-      <button
-        v-if="answers.length"
-        type="button"
-        class="mt-8 text-sm text-ui-muted underline-offset-4 hover:text-ui-text hover:underline"
-        @click="back"
-      >
-        ← Previous question
-      </button>
+      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        <button
+          v-if="answers.length"
+          type="button"
+          class="text-ui-muted underline-offset-4 hover:text-ui-text hover:underline"
+          @click="back"
+        >
+          ← Previous question
+        </button>
+        <button
+          type="button"
+          class="text-ui-muted underline-offset-4 hover:text-ui-text hover:underline"
+          @click="choose(null)"
+        >
+          No preference, skip
+        </button>
+      </div>
     </section>
 
     <section v-else class="quiz-enter max-w-2xl" aria-labelledby="result-title">

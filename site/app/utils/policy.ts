@@ -6,22 +6,23 @@ export function policySlug(path: string) {
 
 export type RuleType = 'permits' | 'requires' | 'forbids';
 
-export interface RuleQuestion {
-  title: string;
-  detail: string;
-  yes: string;
-  no: string;
-}
-
 export interface Rule {
   id: string;
   label: string;
+  /**
+   * What the rule covers, without taking a side. It is read after the rule
+   * type ("Permits", "Requires", "Forbids") and in quiz questions such as
+   * "Should your policy forbid this?", so keep it a neutral noun phrase.
+   */
   description: string;
-  /** Quiz wording. Falls back to the description when omitted. */
-  question?: RuleQuestion;
 }
 
-export const ruleTypes: { type: RuleType; label: string }[] = [
+type RuleTypeDefinition = {
+  type: RuleType;
+  label: string;
+};
+
+export const ruleTypes: RuleTypeDefinition[] = [
   { type: 'permits', label: 'Permits' },
   { type: 'requires', label: 'Requires' },
   { type: 'forbids', label: 'Forbids' },
@@ -33,77 +34,51 @@ export const rules: Rule[] = [
   {
     id: 'ai-code',
     label: 'AI-generated code',
-    description: 'Code written with the help of AI tools is accepted.',
-    question: {
-      title: 'Can they submit AI-generated code?',
-      detail:
-        'Assume the contributor understands, tests, and takes responsibility for the code before submitting it.',
-      yes: 'Yes, if they understand it',
-      no: 'No, the submitted code must be their own',
-    },
+    description: 'Code written with the help of AI tools.',
   },
   {
     id: 'ai-text',
     label: 'AI-written text',
-    description: 'Issues, descriptions, and comments may be written with AI.',
-    question: {
-      title: 'Can AI write their public messages?',
-      detail:
-        'This includes issue reports, pull request descriptions, comments, and replies to review.',
-      yes: 'Yes, AI-written messages are welcome',
-      no: 'No, contributors should write in their own words',
-    },
+    description:
+      'Issues, pull request descriptions, and comments written with AI.',
   },
   {
     id: 'agents',
     label: 'Agent submissions',
-    description: 'Agents may open issues and pull requests.',
-    question: {
-      title: 'Can agents submit directly?',
-      detail:
-        'An agent could open an issue or pull request without a person writing and posting each action.',
-      yes: 'Yes, agents may submit',
-      no: 'No, a person must submit',
-    },
+    description: 'Issues and pull requests opened by AI agents on their own.',
   },
   {
     id: 'private-use',
     label: 'Private tooling',
-    description: 'What contributors use on their own machine is not policed.',
-    question: {
-      title: 'Can contributors use AI privately?',
-      detail:
-        'Think of research, brainstorming, or drafting on their own machine, even when the submitted work must be their own.',
-      yes: 'Yes, private use is their business',
-      no: 'No, contributions must involve no AI assistance',
-    },
+    description:
+      'Any tools, AI or not, that contributors use on their own machine.',
   },
   {
     id: 'guidelines',
     label: 'Contribution guidelines',
-    description: 'The project’s contribution guidelines must be followed.',
+    description: 'Following the project’s contribution guidelines.',
   },
   {
     id: 'human-authorship',
     label: 'Human authorship',
     description:
-      'Issues, descriptions, and comments must be written by the contributor.',
+      'Issues, descriptions, and comments written by the contributor in their own words.',
   },
   {
     id: 'ownership',
     label: 'Full ownership',
     description:
-      'Contributors test, understand, and take responsibility for every change themselves.',
+      'Testing, understanding, and taking responsibility for every change.',
   },
   {
     id: 'any-ai',
     label: 'Any AI assistance',
-    description: 'No part of a contribution may be made with AI tools.',
+    description: 'AI tools used for any part of a contribution.',
   },
   {
     id: 'ai-disclosure',
     label: 'AI disclosure notes',
-    description: 'Submissions must not carry notes about AI tools.',
+    description: 'Notes in a submission about which AI tools were used.',
   },
   {
     id: 'raw-ai-output',

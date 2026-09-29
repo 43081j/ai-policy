@@ -1,59 +1,63 @@
-export interface QuizPolicy {
+type QuizPolicy = {
   path: string;
   rules: RulesByType;
+};
+
+export type QuizQuestion = {
+  rule: Rule;
+  type: RuleType;
+};
+
+/** Fills "Should your policy ___ this?" for each rule type. */
+export const quizVerbs: Record<RuleType, string> = {
+  permits: 'permit',
+  requires: 'require',
+  forbids: 'forbid',
+};
+
+/** `null` means the question was skipped. */
+export type QuizAnswer = boolean | null;
+
+function takes(policy: QuizPolicy, { rule, type }: QuizQuestion) {
+  return policy.rules[type]?.includes(rule.id) ?? false;
 }
 
-export interface QuizQuestion extends RuleQuestion {
-  ruleId: Rule['id'];
-}
-
-// A policy answers "yes" to a rule when it permits or requires it.
-function isYes(policy: QuizPolicy, ruleId: Rule['id']) {
-  return (
-    (policy.rules.permits?.includes(ruleId) ||
-      policy.rules.requires?.includes(ruleId)) ??
-    false
-  );
-}
-
-export function questionFor(rule: Rule): QuizQuestion {
-  return {
-    ruleId: rule.id,
-    title: rule.question?.title ?? rule.label,
-    detail: rule.question?.detail ?? rule.description,
-    yes: rule.question?.yes ?? 'Yes',
-    no: rule.question?.no ?? 'No',
-  };
-}
-
-/**
- * Picks the rule that splits the candidates most evenly. Rules all
- * candidates agree on are skipped, so every answer narrows the list.
- */
 export function nextQuestion(
   candidates: QuizPolicy[],
   asked: Rule['id'][],
 ): QuizQuestion | undefined {
-  let best: { rule: Rule; imbalance: number } | undefined;
+  const questions = rules
+    .filter((rule) => !asked.includes(rule.id))
+    .flatMap((rule) => ruleTypes.map(({ type }) => ({ rule, type })));
 
-  for (const rule of rules) {
-    if (asked.includes(rule.id)) continue;
+  let best: QuizQuestion | undefined;
+  let bestImbalance = candidates.length;
 
-    const yes = candidates.filter((policy) => isYes(policy, rule.id)).length;
-    const no = candidates.length - yes;
-    if (yes === 0 || no === 0) continue;
+  for (const question of questions) {
+    const answersYes = candidates.filter((policy) => {
+      return takes(policy, question);
+    }).length;
 
-    const imbalance = Math.abs(yes - no);
-    if (!best || imbalance < best.imbalance) best = { rule, imbalance };
+    const imbalance = Math.abs(2 * answersYes - candidates.length);
+    if (imbalance < bestImbalance) {
+      best = question;
+      bestImbalance = imbalance;
+    }
   }
 
-  return best && questionFor(best.rule);
+  return best;
 }
 
 export function filterCandidates<T extends QuizPolicy>(
   candidates: T[],
-  ruleId: Rule['id'],
-  answer: boolean,
+  question: QuizQuestion,
+  answer: QuizAnswer,
 ): T[] {
-  return candidates.filter((policy) => isYes(policy, ruleId) === answer);
+  if (answer === null) {
+    return candidates;
+  }
+
+  return candidates.filter((policy) => {
+    return takes(policy, question) === answer;
+  });
 }
