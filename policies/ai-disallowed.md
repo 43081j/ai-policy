@@ -6,7 +6,7 @@ created: '2026-09-17'
 updated: '2026-09-20'
 rules:
   requires: [guidelines, human-authorship]
-  forbids: [any-ai, raw-ai-output]
+  forbids: [any-ai]
 ---
 
 # AI Contribution Policy
