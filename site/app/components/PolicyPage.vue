@@ -123,6 +123,15 @@ defineOgImage('Policy', {
               <span v-if="v === latestVersion" class="text-ui-faint">
                 latest
               </span>
+              <NuxtLink
+                :href="policyReleaseUrl(slug, v)"
+                class="ml-auto text-ui-muted hover:text-ui-text"
+                target="_blank"
+                external
+              >
+                Changes <span aria-hidden="true">↗</span>
+                <span class="sr-only">in version {{ v }}</span>
+              </NuxtLink>
             </li>
           </ul>
         </div>

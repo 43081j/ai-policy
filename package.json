@@ -23,6 +23,8 @@
     "lint:fix": "oxlint --fix",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
+    "policies:snapshot": "node scripts/policy-versions.ts",
+    "policies:check": "node scripts/policy-versions.ts --check",
     "adopters": "node --env-file-if-exists=.env scripts/adopters.ts",
     "typecheck": "tsc"
   },
