@@ -51,6 +51,11 @@ export const rules: Rule[] = [
       'Issues, pull request descriptions, and comments written with AI.',
   },
   {
+    id: 'ai-media',
+    label: 'AI-generated media',
+    description: 'Images, audio, video, and other media generated with AI.',
+  },
+  {
     id: 'agents',
     label: 'Agent submissions',
     description: 'Issues and pull requests opened by AI agents on their own.',
