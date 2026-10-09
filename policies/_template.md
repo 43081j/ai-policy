@@ -3,7 +3,7 @@
 # The policy name, shown in listings and as the page heading.
 name: '{Name}'
 # Semantic version of the policy text. Start at 1.0.0. Keep the quotes.
-# Copy each version to policies/versions/<name>/<version>.md. Bump the
+# A new version gets a permalink and a GitHub release. Bump the
 # - major for changes to obligations, rights, scope, or enforcement,
 # - minor for clarifications, examples, or sections that change no commitment,
 # - patch for typos and formatting.
