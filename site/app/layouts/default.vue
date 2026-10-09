@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { policyLicense } from '~/shared/constants/policies';
+</script>
+
 <template>
   <div class="mx-auto max-w-5xl px-4 sm:px-8">
     <header class="flex items-center justify-between gap-4 py-5">
@@ -20,7 +24,11 @@
     <footer
       class="mt-24 border-t border-ui-border pt-7 pb-10 text-sm text-ui-muted"
     >
-      <p>Policies are MIT licensed.</p>
+      <p>
+        Policies are licensed under
+        <a :href="policyLicense.url" target="_blank">{{ policyLicense.name }}</a
+        >. Website code is MIT licensed.
+      </p>
     </footer>
   </div>
 </template>

@@ -3,7 +3,11 @@ import { useClipboard } from '@vueuse/core';
 import type { ContentFile } from 'comark-content';
 import { MarkdownDocument } from '@comark/vue';
 import { renderMarkdown } from 'comark/render';
-import { policyFileName, siteUrl } from '~/shared/constants/policies';
+import {
+  policyFileName,
+  policyLicense,
+  siteUrl,
+} from '~/shared/constants/policies';
 
 const props = defineProps<{
   policy: ContentFile;
@@ -24,7 +28,9 @@ const policyDocument = computed<ContentFile>(() => ({
         { href: `${siteUrl}${policyPermalink(props.slug, props.version)}` },
         `${props.policy.data.name} policy, version ${props.version}`,
       ],
-      ` from ${props.policy.data.updated ?? props.policy.data.created}. Read more about this and other AI contribution policies on `,
+      ` from ${props.policy.data.updated ?? props.policy.data.created}, licensed under `,
+      ['a', { href: policyLicense.url }, policyLicense.name],
+      '. Read more about this and other AI contribution policies on ',
       ['a', { href: `${siteUrl}/` }, 'ai-policy.dev'],
       '.',
     ],
