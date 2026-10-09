@@ -3,6 +3,7 @@ import type { QueryRowBase } from 'comark-content'
 
 export interface DefaultData {
   name: string;
+  version: string;
   tagline: string;
   created: string;
   rules: {
@@ -15,6 +16,7 @@ export interface DefaultData {
 
 export interface DefaultRow extends QueryRowBase {
   'data.name': string;
+  'data.version': string;
   'data.tagline': string;
   'data.created': string;
   'data.rules.permits'?: Array<string>;
@@ -33,9 +35,12 @@ declare module 'comark-content' {
       '/ai-allowed': DefaultData
       '/ai-disallowed': DefaultData
       '/ai-disclosed': DefaultData
-      '/human-copyright': DefaultData
       '/human-responsible': DefaultData
       '/human-voice': DefaultData
+      '/versions/ai-allowed/1.0.0': DefaultData
+      '/versions/ai-disallowed/1.0.0': DefaultData
+      '/versions/human-responsible/1.0.0': DefaultData
+      '/versions/human-voice/1.0.0': DefaultData
     }
   }
 }

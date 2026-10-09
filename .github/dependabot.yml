@@ -4,6 +4,8 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 10
     versioning-strategy: increase
     groups:
@@ -15,6 +17,8 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     groups:
       github-actions:
         patterns:

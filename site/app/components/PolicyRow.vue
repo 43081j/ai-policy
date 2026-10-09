@@ -17,7 +17,7 @@ const { policyRuleGroups } = usePolicyRules(props.rules);
       <h3 class="text-lg font-semibold tracking-tight text-balance">
         <NuxtLink
           :to="to"
-          class="no-underline group-hover:underline after:(absolute inset-0 content-[''])"
+          class="underline md:no-underline group-hover:underline after:(absolute inset-0 content-[''])"
         >
           {{ name }}
         </NuxtLink>

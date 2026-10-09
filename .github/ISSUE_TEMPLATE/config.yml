@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Browse the policies
+    url: https://ai-policy.dev/
+    about: Compare, copy, or download the existing AI contribution policies

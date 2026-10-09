@@ -4,15 +4,33 @@ export function policySlug(path: string) {
   return path.split('/').pop() ?? path;
 }
 
+export function policyVersionPath(slug: string, version: string) {
+  return `/versions/${slug}/${version}`;
+}
+
+export function policyPermalink(slug: string, version: string) {
+  return `/policies/${slug}/${version}`;
+}
+
 export type RuleType = 'permits' | 'requires' | 'forbids';
 
 export interface Rule {
   id: string;
   label: string;
+  /**
+   * What the rule covers, without taking a side. It is read after the rule
+   * type ("Permits", "Requires", "Forbids") and in quiz questions such as
+   * "Should your policy forbid this?", so keep it a neutral noun phrase.
+   */
   description: string;
 }
 
-export const ruleTypes: { type: RuleType; label: string }[] = [
+type RuleTypeDefinition = {
+  type: RuleType;
+  label: string;
+};
+
+export const ruleTypes: RuleTypeDefinition[] = [
   { type: 'permits', label: 'Permits' },
   { type: 'requires', label: 'Requires' },
   { type: 'forbids', label: 'Forbids' },
@@ -29,7 +47,8 @@ export const rules: Rule[] = [
   {
     id: 'ai-text',
     label: 'AI-written text',
-    description: 'Issues, descriptions, and comments written with AI.',
+    description:
+      'Issues, pull request descriptions, and comments written with AI.',
   },
   {
     id: 'ai-media',
@@ -39,13 +58,13 @@ export const rules: Rule[] = [
   {
     id: 'agents',
     label: 'Agent submissions',
-    description:
-      'Agents and automated accounts opening issues, pull requests, or comments.',
+    description: 'Issues and pull requests opened by AI agents on their own.',
   },
   {
     id: 'private-use',
     label: 'Private tooling',
-    description: 'Whatever tools contributors use on their own machine.',
+    description:
+      'Any tools, AI or not, that contributors use on their own machine.',
   },
   {
     id: 'guidelines',
@@ -56,30 +75,23 @@ export const rules: Rule[] = [
     id: 'human-authorship',
     label: 'Human authorship',
     description:
-      'Issues, descriptions, and comments written by the contributor.',
+      'Issues, descriptions, and comments written by the contributor in their own words.',
   },
   {
     id: 'ownership',
     label: 'Full ownership',
     description:
-      'Contributors test, understand, and take responsibility for every change themselves.',
-  },
-  {
-    id: 'disclosure',
-    label: 'AI disclosure',
-    description:
-      'Stating which AI tools were used and how much of the work they did.',
-  },
-  {
-    id: 'provenance',
-    label: 'Licensing rights',
-    description:
-      'Confirming the right to submit the work under the project’s license.',
+      'Testing, understanding, and taking responsibility for every change.',
   },
   {
     id: 'any-ai',
     label: 'Any AI assistance',
-    description: 'Using AI tools for any part of a contribution.',
+    description: 'AI tools used for any part of a contribution.',
+  },
+  {
+    id: 'ai-disclosure',
+    label: 'AI disclosure notes',
+    description: 'Notes in a submission about which AI tools were used.',
   },
   {
     id: 'raw-ai-output',
@@ -111,7 +123,11 @@ export function usePolicies() {
       const files = await clientContent.list();
 
       return files
-        .filter((file) => !policySlug(file.path).startsWith('_'))
+        .filter(
+          (file) =>
+            !file.path.startsWith('/versions/') &&
+            !policySlug(file.path).startsWith('_'),
+        )
         .map((file) => ({
           path: file.path,
           to: `/policies/${policySlug(file.path)}`,
