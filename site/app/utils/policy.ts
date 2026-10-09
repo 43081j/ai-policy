@@ -105,11 +105,6 @@ export const rules: Rule[] = [
     description:
       'Reports and fixes for problems the contributor has not reproduced.',
   },
-  {
-    id: 'ai-coauthor',
-    label: 'AI co-author credits',
-    description: 'Commits and pull requests listing AI tools as co-authors.',
-  },
 ];
 
 export const clientContent = createContentClient({
