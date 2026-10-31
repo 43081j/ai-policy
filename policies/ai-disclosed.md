@@ -16,7 +16,7 @@ This is not an anti-AI policy. Maintainers review every contribution by hand, an
 
 ## Disclose your AI usage
 
-Every issue, pull request, and discussion that was made with AI assistance must say so. State the tools you used, for example Claude Code, Cursor, or Copilot, and how much of the work they did. Use the pull request template if the project has one.
+Every issue, pull request, and discussion that was made with AI assistance must say so. State the tools you used, for example Claude Code, Cursor, or Copilot, and how much of the work they did.
 
 For example:
 
