@@ -11,11 +11,9 @@ rules:
 
 # AI Contribution Policy
 
-This project **does not** allow any type of contribution to be made with the assistance of AI tools.
+This project **does not** allow any type of contribution to be made with the assistance of AI tools. All contributions must show signs of human authorship and be the result of the contributor's own work.
 
-This includes, but is not limited to, code generation, documentation, issue creation, and any other content that is created with the help of AI. All contributions must show signs of human authorship and be the result of the contributor's own work.
-
-For example, AI must not be used to:
+This includes, but is not limited to, using AI to:
 
 - Write or rewrite code, documentation, commit messages, issues, pull requests, or comments.
 - Paraphrase, edit, or fix the spelling and grammar of your text.
