@@ -47,4 +47,6 @@ change to the policy, even a typo fix, needs a new version.
 
 ## License
 
-[MIT](./LICENSE)
+The policies in [`policies/`](./policies) are licensed under
+[CC BY-SA 4.0](./policies/LICENSE). The website and tooling are licensed under
+[MIT](./LICENSE).
