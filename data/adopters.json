@@ -1,9 +1,20 @@
 [
+  "branislavjuhaas/dn-debrief",
+  "comail-atproto/comail-push-relay",
+  "danielroe/forges",
   "dubzzz/fast-check",
+  "GEWIS/sudosos",
   "graphieros/vue-data-ui",
+  "humanitasfirenzenord/kaneo",
   "MatteoGabriele/agentscan",
   "MatteoGabriele/agentscan-action",
   "npmx-dev/npmx.dev",
   "OpenLightingProject/open-fixture-library",
-  "TanStack/query"
+  "RainingComputers/vodd",
+  "Richargh/workdown",
+  "solsticegamestudios/GModPatchTool",
+  "t128n/satteri-reladraw",
+  "TanStack/query",
+  "usekaneo/kaneo",
+  "vitest-dev/vitest"
 ]
