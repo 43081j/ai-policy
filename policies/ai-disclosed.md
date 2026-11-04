@@ -1,5 +1,6 @@
 ---
 name: AI Disclosed
+version: '1.0.0'
 tagline: AI is welcome, as long as you say when and how you used it.
 created: '2026-09-23'
 rules:
