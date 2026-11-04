@@ -34,6 +34,7 @@ declare module 'comark-content' {
       '/_template': DefaultData
       '/ai-allowed': DefaultData
       '/ai-disallowed': DefaultData
+      '/ai-disclosed': DefaultData
       '/human-responsible': DefaultData
       '/human-voice': DefaultData
       '/versions/ai-allowed/1.0.0': DefaultData
