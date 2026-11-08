@@ -2,7 +2,7 @@
 name: AI Disclosed
 version: '1.0.0'
 tagline: AI is welcome, as long as you say when and how you used it.
-created: '2026-09-23'
+created: '2026-11-08'
 rules:
   permits: [ai-code, ai-text]
   requires: [guidelines, ownership, ai-disclosure]

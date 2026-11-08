@@ -3,7 +3,7 @@ name: Human Responsible
 version: '1.0.0'
 tagline: Your tools are your business, but everything you submit must be yours.
 created: '2026-09-18'
-updated: '2026-09-23'
+updated: '2026-11-08'
 rules:
   permits: [private-use]
   requires: [guidelines, human-authorship, ownership]

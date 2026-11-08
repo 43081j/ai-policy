@@ -3,7 +3,7 @@ name: AI Disallowed
 version: '1.0.0'
 tagline: No AI at all. Every contribution must be the contributor’s own work.
 created: '2026-09-17'
-updated: '2026-09-23'
+updated: '2026-11-08'
 rules:
   requires: [guidelines, human-authorship]
   forbids: [any-ai]
