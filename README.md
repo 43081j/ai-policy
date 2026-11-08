@@ -24,7 +24,9 @@ policy best matches their answers about AI use in contributions.
 3. Write the policy body under the `AI Contribution Policy` heading, followed
    by a short `Summary` list. The website adds an attribution line with the
    version's permalink when the policy is copied or downloaded.
-4. Copy the finished file to `policies/versions/<name>/1.0.0.md`.
+4. Commit the new file in `policies/versions/`. `npm run dev` and
+   `npm run policies:snapshot` write it for you. If you forget, autofix.ci adds
+   it to your pull request.
 5. Run `npm run lint` and, if you want to see it rendered, `npm run dev`.
 
 ## Versions
@@ -41,9 +43,16 @@ date:
 
 Every version is kept in `policies/versions/<name>/<version>.md` and is
 permanently available at `https://ai-policy.dev/policies/<name>/<version>`.
-After changing a policy, copy it to a new file there, named after its new
-version. Once a version is on `main`, its file never changes, so any further
-change to the policy, even a typo fix, needs a new version.
+Once a version is on `main`, its snapshot never changes, so any further change
+to the policy, even a typo fix, needs a new version.
+
+Snapshots are written by `npm run dev` and `npm run policies:snapshot`. On pull
+requests, autofix.ci commits missing or outdated snapshots automatically.
+
+When a new version reaches `main`, a GitHub release tagged `<name>@<version>`
+is created automatically. Its notes contain the diff against the previous
+version and the commits that changed the policy. The website links every
+version to its release.
 
 ## License
 
